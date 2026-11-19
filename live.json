@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-19T14:05+08:00",
+  "updated": "2026-11-19T14:11+08:00",
   "total": 10439,
   "growth": null,
   "accounts": [
@@ -30,6 +30,7 @@
   ],
   "posts": [
     {
+      "previewReady": true,
       "releases": [],
       "videoId": "b65ebb31-5f48-4207-bf37-9d3002998d53",
       "title": "Before China Beat 1 — Paper theatre — English test",
@@ -44,6 +45,7 @@
       "url": ""
     },
     {
+      "previewReady": false,
       "releases": [],
       "videoId": "1fdce921-f063-4510-9a09-fb4a3b8e7070",
       "title": "Genius in One Language, Potato in Another",
@@ -58,6 +60,7 @@
       "url": ""
     },
     {
+      "previewReady": true,
       "releases": [],
       "videoId": "ced98c8f-34cf-416b-9df8-10209529fdb2",
       "title": "Before China Beat 1 - Paper theatre - English + Malay test",
@@ -72,6 +75,7 @@
       "url": ""
     },
     {
+      "previewReady": true,
       "releases": [
         {
           "handle": "alex.mei.iamsoft",
@@ -116,6 +120,7 @@
       "url": "https://www.instagram.com/reel/Df1BjyNQrze/"
     },
     {
+      "previewReady": true,
       "releases": [
         {
           "handle": "ooc.ceo",
@@ -139,6 +144,7 @@
       "url": "https://www.tiktok.com/@ooc.ceo/video/7707547731115511047"
     },
     {
+      "previewReady": false,
       "releases": [
         {
           "handle": "ooc.ceo",
@@ -162,6 +168,7 @@
       "url": "https://www.tiktok.com/@ooc.ceo/video/7707563315819547910"
     },
     {
+      "previewReady": false,
       "releases": [
         {
           "handle": "ooc.ceo",
@@ -185,6 +192,7 @@
       "url": "https://www.tiktok.com/@ooc.ceo/video/7706573087172742408"
     },
     {
+      "previewReady": false,
       "releases": [
         {
           "handle": "ooc.ceo",
@@ -208,6 +216,7 @@
       "url": "https://www.tiktok.com/@ooc.ceo/video/7705460389953178898?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
+      "previewReady": false,
       "releases": [
         {
           "handle": "alex.mei1212",
@@ -231,6 +240,7 @@
       "url": "https://www.tiktok.com/@alex.mei1212/video/7705816133424680212?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
+      "previewReady": false,
       "releases": [
         {
           "handle": "ooc.ceo",
@@ -254,6 +264,7 @@
       "url": "https://www.tiktok.com/@ooc.ceo/video/7705089619150277909?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
+      "previewReady": false,
       "releases": [
         {
           "handle": "alex.mei1212",
@@ -277,6 +288,7 @@
       "url": "https://www.tiktok.com/@alex.mei1212/video/7705445079342763270?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
+      "previewReady": false,
       "releases": [
         {
           "handle": "ooc.ceo",
@@ -300,6 +312,7 @@
       "url": "https://www.tiktok.com/@ooc.ceo/video/7704826764496735496?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
+      "previewReady": false,
       "releases": [
         {
           "handle": "alex.mei1212",
@@ -323,6 +336,7 @@
       "url": "https://www.tiktok.com/@alex.mei1212/video/7705074709578435858?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
+      "previewReady": false,
       "releases": [
         {
           "handle": "ooc.ceo",
@@ -346,6 +360,7 @@
       "url": "https://www.tiktok.com/@ooc.ceo/video/7704680262113824052?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
+      "previewReady": false,
       "releases": [
         {
           "handle": "alex.mei1212",
@@ -369,6 +384,7 @@
       "url": "https://www.tiktok.com/@alex.mei1212/video/7704703327325539585?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
+      "previewReady": false,
       "releases": [
         {
           "handle": "ooc.ceo",
@@ -392,6 +408,7 @@
       "url": "https://www.tiktok.com/@ooc.ceo/video/7704084850864704820?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
+      "previewReady": false,
       "releases": [
         {
           "handle": "ooc.ceo",
