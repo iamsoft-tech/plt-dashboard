@@ -227,7 +227,7 @@ footer{padding:18px;text-align:center;font-size:12px;opacity:.8}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{.bar{display:none}.slide{min-height:0;page-break-after:always}}
 </style>
-<style>#accountScope{margin-left:auto;flex:none;max-width:38vw;border:1px solid var(--line);border-radius:12px;padding:5px;background:#fff7ef;color:#391c35;font:inherit}.bar nav{min-width:0;overflow-x:auto}.day [data-video]{cursor:pointer;text-align:left;width:100%;font:inherit;font-size:11px}.blk.scheduled{background:#ffe7ad}.cal .day{display:block}.daypick{border:0;background:transparent;text-align:left;width:100%;padding:0;color:inherit;font:inherit;cursor:pointer}</style><style>#s0{min-height:0}#s0 .in{min-width:0;width:100%}#glance{display:flex;flex-wrap:wrap;gap:10px}#glance>div{min-width:140px}.release-strip{display:flex;gap:9px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x proximity}.release-strip article{flex:0 0 min(265px,84vw);scroll-snap-align:start;background:#fff8f1;border:1px solid var(--line);border-radius:12px;padding:10px 12px}.release-strip strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.25;margin:4px 0}.release-strip small{display:block}.release-strip .stats{font-size:13px;margin-top:6px}</style></head>
+<style>#accountScope{margin-left:auto;flex:none;max-width:38vw;border:1px solid var(--line);border-radius:12px;padding:5px;background:#fff7ef;color:#391c35;font:inherit}.bar nav{min-width:0;overflow-x:auto}.day [data-video]{cursor:pointer;text-align:left;width:100%;font:inherit;font-size:11px}.blk.scheduled{background:#ffe7ad}.cal .day{display:block}.daypick{border:0;background:transparent;text-align:left;width:100%;padding:0;color:inherit;font:inherit;cursor:pointer}</style><style>#s0{min-height:0}#s0 .in{min-width:0;width:100%}#glance{display:flex;flex-wrap:wrap;gap:10px}#glance>div{min-width:140px}#results.video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.video-grid article{min-width:0;padding:12px;background:#fff9f2;border:1px solid var(--line);border-radius:14px;overflow-wrap:anywhere}.video-grid strong,.video-grid small{display:block}.video-grid small{margin:5px 0}.vpreview{width:100%;height:155px;display:block;border:0;border-radius:8px;background:#331b30;object-fit:contain}.vaccounts{display:flex;flex-wrap:wrap;gap:3px 10px;margin:6px 0;font-size:13px}.vaccounts a{overflow-wrap:anywhere}#detail .vpreview{height:240px}.video-grid .stats{font-size:12px;color:var(--muted)}.cal-preview{margin-block:10px}.bar nav{overflow:visible;flex-wrap:wrap}@media(max-width:700px){#results.video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bar{position:sticky;flex-wrap:wrap}.bar nav{order:2;flex-basis:100%}.slide{padding-top:24px}.bar #accountScope{margin-left:auto}}@media(max-width:480px){#results.video-grid{grid-template-columns:minmax(0,1fr)}.vpreview{height:185px}}</style></head>
 <body>
 <div class="bar"><b>Pretty Little Things</b><nav id="nav">
 <a href="#s0">Today</a><a href="#s1">Overview</a><a href="#s2">Act 0</a><a href="#s3">Acts 1-3</a><a href="#s4">The videos</a><a href="#s5">Characters</a><a href="#s6">Calendar</a><a href="#s7">Feedback</a></nav><select id="accountScope" aria-label="Account"><option value="">All accounts</option><option value="ooc.ceo">OOC · TikTok</option><option value="myoutofcoloursceo">OOC · Instagram</option><option value="alex.mei1212">Alex Mei · TikTok</option><option value="alex.mei.iamsoft">Alex Mei · Instagram</option></select></div>
@@ -236,8 +236,8 @@ footer{padding:18px;text-align:center;font-size:12px;opacity:.8}
 <section class="slide" id="s0"><div class="in">
  <div class="kick" id="todaydate"></div><h2>Today</h2>
  <div class="glance" id="glance"></div>
- <h3 class="sec">Released videos</h3>
- <div id="results" class="release-strip" tabindex="0" aria-label="Released videos, scroll horizontally"></div>
+ <h3 class="sec">Campaign videos</h3>
+ <div id="results" class="video-grid" aria-label="Campaign videos"></div>
  <p class="feedline muted" id="dataline"></p>
 </div></section>
 
@@ -423,7 +423,7 @@ const $=s=>document.querySelector(s),el=(t,c,h)=>{const e=document.createElement
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
 const MON=["January","February","March","April","May","June","July","August","September","October","November","December"];
 const fmt=s=>{const d=D(s);return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][d.getUTCDay()]+" "+d.getUTCDate()+" "+MON[d.getUTCMonth()].slice(0,3)};
-const now=new Date(),TODAY=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
+const TODAY=new Date(Date.now()+8*3600000).toISOString().slice(0,10);
 const actOf=s=>ACTS.find(a=>s>=a.from&&s<=a.to);
 const storyOn={},mvOn={};
 ACTS.forEach(a=>{mvOn[a.mv[0]]=a.mv[1];(a.days||[]).forEach((d,i)=>storyOn[d]={n:(a.n-1)*8+i+1,t:a.ch[i],act:a.n})});
@@ -447,7 +447,7 @@ function plan(s){const blocks=[],keys=[];if(s<FIRST||s>END)return{blocks,keys};
 // ============================================================ state
 const KEY="plt-plan-v2";let fb={};try{fb=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
 fb.pick=fb.pick||[];fb.sug=fb.sug||[];const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(fb))}catch(e){}};
-let on=new Set(["live","scheduled"]),sel=null,selectedVideo=null,view=((TODAY>=FIRST&&TODAY<=END)?TODAY:FIRST).slice(0,7);
+let on=new Set(["live","scheduled","key"]),sel=null,selectedVideo=null,view=((TODAY>=FIRST&&TODAY<=END)?TODAY:FIRST).slice(0,7);
 const scope=()=>$("#accountScope").value;
 function handles(p){return (p.account||p.where||"").split(",").map(x=>x.trim().replace(/^@/,"").toLowerCase())}
 function inScope(p){return !scope()||(p.status==="posted"?(p.releases||[]).some(r=>r.handle===scope()):handles(p).includes(scope()))}
@@ -468,10 +468,34 @@ function releases(day){
 function shown(day){const p=plan(day);return {blocks:scope()?[]:p.blocks.filter(b=>on.has(b.k)),keys:p.keys.filter(()=>on.has("key"))}}
 function statuses(g){return [...new Set(g.rows.map(p=>p.status==="posted"?"Posted":"Scheduled"))].join(" / ")}
 function card(g){return '<button type="button" class="blk '+(g.rows.some(p=>p.status==="posted")?"live":"scheduled")+'" data-video="'+esc(g.key)+'" title="'+esc(g.title)+'">'+esc(statuses(g))+' · '+esc(g.title)+'</button>'}
-function versions(g){return g.rows.map(p=>{
- if(p.status!=="posted")return '<div class="drow">'+esc(scope()?"@"+scope():p.where)+' · Scheduled</div>';
- const rows=deliveries(p);return rows.length?rows.map(r=>'<div class="drow"><div><b>@'+esc(r.handle)+'</b> · Posted<br>'+counts(r)+(p.urls.length===1&&p.comments!=null?' · '+num(p.comments)+' comments':'')+' · <a target="_blank" rel="noopener" href="'+esc(r.url)+'">Open post</a></div></div>').join(""):'<div class="drow">Posted · account unconfirmed</div>';
- }).join("")}
+function accountLinks(p){
+ if(p.status==="posted")return deliveries(p);
+ return handles(p).filter(h=>h&&(!scope()||scope()===h)).map(handle=>{
+ const platform=(DATA?.accounts||[]).find(a=>a.name===handle)?.platform;
+ return {handle,url:platform==="instagram"?"https://www.instagram.com/"+encodeURIComponent(handle)+"/":"https://www.tiktok.com/@"+encodeURIComponent(handle)};
+ });
+}
+function player(p){
+ if(p.previewReady&&/^[a-f0-9-]{36}$/i.test(p.videoId)){
+ const base="previews/"+p.videoId;
+ return '<video class="vpreview" aria-label="'+esc(p.title)+' preview" controls playsinline preload="none" poster="'+base+'.jpg" src="'+base+'.mp4"></video>';
+ }
+ const urls=accountLinks(p).map(r=>r.url);if(p.status==="posted")for(const u of urls){
+ const url=new URL(u),tt=url.pathname.match(/^\/@[^/]+\/video\/(\d+)/),ig=url.pathname.match(/^\/(reel|p)\/([\w-]+)/);
+ let src="";if(tt&&url.hostname.endsWith("tiktok.com"))src="https://www.tiktok.com/player/v1/"+tt[1]+"?autoplay=0";
+ if(ig&&url.hostname.endsWith("instagram.com"))src="https://www.instagram.com/"+ig[1]+"/"+ig[2]+"/embed/";
+ if(src)return '<iframe class="vpreview" loading="lazy" title="'+esc(p.title)+'" src="'+esc(src)+'" allowfullscreen></iframe>';
+ }
+ return '<small>Video preview unavailable</small>';
+}
+function versions(g,withStats=false){
+ const seen=new Set();return g.rows.map(p=>{
+ const key=p.videoId||p.title;if(seen.has(key))return "";seen.add(key);
+ const same=g.rows.filter(x=>(x.videoId||x.title)===key);
+ const links=new Map(same.flatMap(accountLinks).map(r=>[r.url,r]));
+ return '<div class="cal-preview">'+player(p)+'<div class="vaccounts">'+[...links.values()].map(r=>'<a href="'+esc(r.url)+'" target="_blank" rel="noopener">@'+esc(r.handle)+'</a>').join("")+'</div>'+(withStats&&p.status==="posted"?[...links.values()].map(r=>'<div class="stats">'+(links.size>1?'@'+esc(r.handle)+' · ':'')+counts(r)+'</div>').join(""):"")+'</div>';
+ }).join("");
+}
 function selectDay(day,key=null){sel=day;selectedVideo=key;draw();show();if(innerWidth<1000)$("#detail").scrollIntoView({block:"start"})}
 $("#accountScope").onchange=()=>{selectedVideo=null;draw();show();today();vidfb()};
 function draw(){const c=$("#cal");c.innerHTML="";["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach(d=>c.appendChild(el("div","dow",d)));
@@ -541,22 +565,29 @@ function feedLine(){
  $("#feedline").textContent=$("#dataline").textContent=feedState==="none"?text+" | Refresh unavailable":text;
 }
 async function loadFeed(u){feedState="loading";feedLine();try{const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json(),a=Array.isArray(j)?j:(j.posts||[]);posted={};
-  a.forEach(p=>{const d=String(p.date||p.postedAt||p.goLive||"").slice(0,10);if(!/^\d{4}-\d\d-\d\d$/.test(d))return;(posted[d]=posted[d]||[]).push({releases:(p.releases||[]).filter(r=>typeof r.url==="string"&&r.url.startsWith("https://")),time:p.time||"",videoId:p.videoId,comments:Number.isFinite(p.comments)?p.comments:null,urls:(p.urls||[p.url]).filter(u=>typeof u==="string"&&u.startsWith("https://")),platform:String(p.platform||""),title:String(p.title||"Video"),where:String(p.account||p.platform||""),style:String(p.style||""),views:Number.isFinite(p.views)?p.views:null,status:String(p.status||"posted"),url:/^https:\/\//.test(String(p.url||""))?String(p.url):""})});
+  a.forEach(p=>{const d=String(p.date||p.postedAt||p.goLive||"").slice(0,10);if(!/^\d{4}-\d\d-\d\d$/.test(d))return;(posted[d]=posted[d]||[]).push({previewReady:!!p.previewReady,releases:(p.releases||[]).filter(r=>typeof r.url==="string"&&r.url.startsWith("https://")),time:p.time||"",videoId:p.videoId,comments:Number.isFinite(p.comments)?p.comments:null,urls:(p.urls||[p.url]).filter(u=>typeof u==="string"&&u.startsWith("https://")),platform:String(p.platform||""),title:String(p.title||"Video"),where:String(p.account||p.platform||""),style:String(p.style||""),views:Number.isFinite(p.views)?p.views:null,status:String(p.status||"posted"),url:/^https:\/\//.test(String(p.url||""))?String(p.url):""})});
   DATA=Array.isArray(j)?{}:j;feedState="on";feedTime=String(DATA.updated||new Date().toLocaleString()).slice(0,40)}catch(e){feedState="none"}feedLine();draw();show();today();vidfb()}
 // ============================================================ today
 function today(){
  $("#todaydate").textContent=fmt(TODAY)+" "+TODAY.slice(0,4);
  const account=(DATA?.accounts||[]).find(a=>a.name===scope()),total=scope()?account?.followers:DATA?.total,gain=scope()?account?.growth:DATA?.growth;
  $("#glance").innerHTML="<div><b>"+num(total)+"</b>Total followers</div><div><b>"+(gain>0?"+":"")+num(gain)+"</b>"+esc(scope()?"New followers (net since yesterday)":DATA?.growthLabel||"New followers (net)")+"</div>";
- const out=[];
- for(const day of Object.keys(posted).sort().reverse()){
-  const posts=posted[day].filter(p=>p.status==="posted"&&inScope(p)).sort((a,b)=>b.time.localeCompare(a.time));
-  for(const p of posts)for(const r of deliveries(p)){
-   out.push('<article><small>'+esc(day)+' · @'+esc(r.handle)+'</small><strong><a href="'+esc(r.url)+'" target="_blank" rel="noopener">'+esc(p.title)+'</a></strong><div class="stats">'+counts(r)+'</div></article>');
-  }
+ const todayKey=new Date(Date.now()+8*3600000).toISOString().slice(0,10),tomorrow=addDays(todayKey,1);
+ const days=[todayKey,tomorrow,...Object.keys(posted).filter(d=>d<todayKey).sort().reverse()];
+ const cards=[],seenVideos=new Set();
+ for(const day of days){
+ const groups=new Map();
+ for(const row of (posted[day]||[]).filter(inScope).slice().sort((a,b)=>b.time.localeCompare(a.time))){
+ if(row.status!=="posted"&&!(row.status==="scheduled"&&(day===todayKey||day===tomorrow)))continue;
+ const key=row.title.trim().toLowerCase()||row.videoId;
+ if(!groups.has(key))groups.set(key,{title:row.title,rows:[]});groups.get(key).rows.push(row);
  }
- $("#results").innerHTML=out.join("")||'<p class="sm muted">No confirmed releases in this account view.</p>';
- $("#results").title="A dash means the metric was not reported for that release.";
+ for(const [key,g] of groups){if(cards.length===6)break;if(seenVideos.has(key))continue;seenVideos.add(key);
+ const label=day===todayKey?"Today":day===tomorrow?"Tomorrow":day===addDays(todayKey,-1)?"Yesterday":day;
+ cards.push('<article><small>'+esc(label)+' · '+statuses(g)+'</small><strong>'+esc(g.title)+'</strong>'+versions(g,true)+'</article>');}
+ if(cards.length===6)break;
+ }
+ $("#results").innerHTML=cards.join("")||'<p class="sm muted">No videos for this account.</p>';
 }
 // ============================================================ feedback
 ["f1","f3","f4","f5","f6","fname"].forEach(id=>{const t=$("#"+id);if(fb[id]!=null)t.value=fb[id];t.oninput=()=>{fb[id]=t.value;save()}});

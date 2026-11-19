@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-19T14:11+08:00",
+  "updated": "2026-11-19T14:14+08:00",
   "total": 10439,
   "growth": null,
   "accounts": [
@@ -45,7 +45,7 @@
       "url": ""
     },
     {
-      "previewReady": false,
+      "previewReady": true,
       "releases": [],
       "videoId": "1fdce921-f063-4510-9a09-fb4a3b8e7070",
       "title": "Genius in One Language, Potato in Another",
@@ -144,7 +144,7 @@
       "url": "https://www.tiktok.com/@ooc.ceo/video/7707547731115511047"
     },
     {
-      "previewReady": false,
+      "previewReady": true,
       "releases": [
         {
           "handle": "ooc.ceo",
@@ -168,7 +168,7 @@
       "url": "https://www.tiktok.com/@ooc.ceo/video/7707563315819547910"
     },
     {
-      "previewReady": false,
+      "previewReady": true,
       "releases": [
         {
           "handle": "ooc.ceo",
