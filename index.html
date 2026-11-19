@@ -495,11 +495,17 @@ function mini(a){let s=addDays(a.from,-((D(a.from).getUTCDay()+6)%7)),h='<div cl
  while(s<=a.to){for(let i=0;i<7;i++){const inn=s>=a.from&&s<=a.to,st=a.n===0?BEATS.some(b=>b[0]===s):!!storyOn[s],mv=!!mvOn[s]&&inn,kd=s===DECISION||REVIEWS.includes(s);
    h+='<button type="button" data-go="'+s+'" data-act="'+a.n+'" title="'+fmt(s)+'" class="'+(inn?"in":"off")+(st&&inn?" st":"")+(mv?" mv":"")+(kd&&inn&&!mv?" kd":"")+'">'+D(s).getUTCDate()+'</button>';s=addDays(s,1)}}
  return h+'</div><div class="minikey"><span><i style="box-shadow:inset 0 -4px 0 #391C35;background:var(--a'+a.n+')"></i>'+(a.n===0?"a new beat starts":"story chapter")+'</span><span><i style="background:#391C35"></i>music video</span><span><i style="border-radius:999px;border:2px solid #391C35;background:transparent"></i>decision or data review</span></div>'}
+function writingLinks(n){
+ const desk=document.createElement("details");desk.className="panel";const summary=document.createElement("summary");summary.textContent="Writing sources · Act "+n;desk.appendChild(summary);
+ for(const [key,label] of [["bible","Story bible"],["treatment","Four-act treatment"],["beats","Act "+n+" beats"],["script",n?"Edit act script draft":"Act 0 working script"]]){const a=document.createElement("a");a.href="writing.html?act="+n+"&doc="+key;a.textContent=label;a.target="_blank";a.rel="noopener";const line=document.createElement("div");line.appendChild(a);desk.appendChild(line)}
+ return desk;
+}
+$("#s2 .in").appendChild(writingLinks(0));
 $("#mini0").innerHTML=mini(ACTS[0]);
 BEATS.forEach((b,i)=>{const c=el("div","beat");c.innerHTML='<span class="num">'+(i+1)+'</span><b>'+b[2]+'</b><span>'+b[3]+'</span><a href="#s6" data-go="'+b[0]+'" data-act="0">'+fmt(b[0]).slice(4)+(b[1]!==b[0]?" and "+fmt(b[1]).slice(4):"")+' →</a>';$("#beats").appendChild(c)});
 ACTS.slice(1).forEach(a=>{const c=el("div","panel act");
  c.innerHTML='<div class="top" style="background:var(--a'+a.n+')"><div class="kick" style="margin:0">'+fmt(a.from).slice(4)+" to "+fmt(a.to).slice(4)+'</div><h3 style="margin:0">Act '+a.n+": "+a.title+'</h3></div><p style="margin:0">'+a.about+'</p><p style="margin:0"><b>The turn:</b> '+a.turn+'</p>'+mini(a)+'<ol start="'+(1+(a.n-1)*8)+'">'+a.ch.map((x,i)=>'<li><a href="#s6" data-go="'+a.days[i]+'" data-act="'+a.n+'">'+x+'</a> <span class="muted">'+fmt(a.days[i]).slice(4)+'</span></li>').join("")+'</ol><div class="mvline">♪ '+fmt(a.mv[0])+": "+a.mv[1]+'</div><details><summary>Still open</summary>'+a.open+'</details>';
- $("#acts").appendChild(c)});
+ c.appendChild(writingLinks(a.n));$("#acts").appendChild(c)});
 // ============================================================ media
 document.querySelectorAll("[data-m]").forEach(e=>{e.src=MEDIA[e.dataset.m];if(e.dataset.p)e.poster=MEDIA[e.dataset.p]});
 if(MEDIA.genVid)$("#genbox").outerHTML='<video src="'+MEDIA.genVid+'" muted loop playsinline autoplay></video>';
@@ -513,7 +519,7 @@ function feedLine(){
 }
 async function loadFeed(u){feedState="loading";feedLine();try{const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json(),a=Array.isArray(j)?j:(j.posts||[]);posted={};
   a.forEach(p=>{const d=String(p.date||p.postedAt||p.goLive||"").slice(0,10);if(!/^\d{4}-\d\d-\d\d$/.test(d))return;(posted[d]=posted[d]||[]).push({platform:String(p.platform||""),title:String(p.title||"Video").slice(0,80),where:String(p.account||p.platform||"").slice(0,60),style:String(p.style||""),views:Number.isFinite(p.views)?p.views:null,status:String(p.status||"posted"),url:/^https:\/\//.test(String(p.url||""))?String(p.url):""})});
-  DATA=Array.isArray(j)?{}:j;feedState="on";feedTime=String(DATA.updated||new Date().toLocaleString()).slice(0,40)}catch(e){feedState="none"}feedLine();draw();show();today()}
+  DATA=Array.isArray(j)?{}:j;feedState="on";feedTime=String(DATA.updated||new Date().toLocaleString()).slice(0,40)}catch(e){feedState="none"}feedLine();draw();show();today();vidfb()}
 // ============================================================ today
 function today(){const days=[addDays(TODAY,-1),TODAY,addDays(TODAY,1)],names=["Yesterday","Today","Tomorrow"];
  $("#todaydate").textContent=fmt(TODAY)+" "+TODAY.slice(0,4);
@@ -535,10 +541,32 @@ function today(){const days=[addDays(TODAY,-1),TODAY,addDays(TODAY,1)],names=["Y
 // ============================================================ feedback
 ["f0","f1","f3","f4","f5","f6","fname"].forEach(id=>{const t=$("#"+id);if(fb[id]!=null)t.value=fb[id];t.oninput=()=>{fb[id]=t.value;save()}});
 ["Paper theatre","Storybook ink page","Full motion","Neon painted cel","Stage and screen"].forEach(s=>{const b=el("button","chipb",s);b.type="button";b.setAttribute("aria-pressed",fb.pick.includes(s));b.onclick=()=>{fb.pick=fb.pick.includes(s)?fb.pick.filter(x=>x!==s):[...fb.pick,s];b.setAttribute("aria-pressed",fb.pick.includes(s));save()};$("#fpick").appendChild(b)});
-function vidfb(){const box=$("#vidfb");fb.vid=fb.vid||{};box.innerHTML="";VIDEOS.forEach(v=>{const k=Object.keys(TYPES).find(t=>TYPES[t].name===v.style)||"pt",c=el("div","vcard",'<video src="'+esc(v.file)+'" controls playsinline preload="metadata"></video><span class="blk '+k+'">'+esc(v.style)+'</span><br><b>'+esc(v.title)+'</b> · '+fmt(v.date)+'<textarea></textarea>');const t=c.querySelector("textarea");t.value=fb.vid[v.id]||"";t.oninput=()=>{fb.vid[v.id]=t.value;save()};box.appendChild(c)})}
+function reviewWindow(now=new Date()){
+ const local=new Date(now.getTime()+8*3600000).toISOString().slice(0,10);
+ return [addDays(local,7),addDays(local,13)];
+}
+function reviewVideos(now=new Date()){
+ const [start,end]=reviewWindow(now), byId=new Map();
+ if(!DATA?.updated || Date.now()-Date.parse(DATA.updated)>45*60000)return [];
+ for(const p of (DATA.posts||[])){
+   if(p.status!=="scheduled"||!p.videoId||p.date<start||p.date>end)continue;
+   if(!byId.has(p.videoId)||byId.get(p.videoId).date>p.date)byId.set(p.videoId,p);
+ }
+ return [...byId.values()].sort((a,b)=>a.date.localeCompare(b.date));
+}
+function vidfb(){
+ const box=$("#vidfb"), [start,end]=reviewWindow();
+ const videos=reviewVideos();fb.vid=fb.vid||{};
+ if(box.dataset.key===JSON.stringify([start,end,videos,feedState]))return;
+ box.dataset.key=JSON.stringify([start,end,videos,feedState]);box.replaceChildren();
+ const info=document.createElement("p");info.className="sm";info.textContent="Video feedback · "+start+" to "+end+" (Shanghai)";
+ box.appendChild(info);
+ if(!videos.length){const empty=document.createElement("p");empty.textContent=!DATA?.updated||Date.now()-Date.parse(DATA.updated)>45*60000?"Waiting for the current schedule.":"No videos scheduled for this review window.";box.appendChild(empty);}
+ videos.forEach(v=>{const card=document.createElement("label");card.className="vcard";const name=document.createElement("b");name.textContent=v.title;const date=document.createElement("p");date.textContent=v.date+" · "+v.account;const t=document.createElement("textarea");t.setAttribute("aria-label","Feedback on "+v.title);t.value=fb.vid[v.videoId]||"";t.oninput=()=>{fb.vid[v.videoId]=t.value;save()};card.append(name,date,t);box.appendChild(card)});
+}
 function sugs(){const u=$("#suglist");u.innerHTML="";fb.sug.slice().sort((a,b)=>a.d<b.d?-1:1).forEach(x=>{const li=el("li",null,'<span><b>'+fmt(x.d)+":</b> "+esc(x.t)+'</span>');const r=el("button",null,"remove");r.type="button";r.onclick=()=>{fb.sug=fb.sug.filter(y=>y!==x);save();sugs();draw();show()};li.appendChild(r);u.appendChild(li)});$("#sugnone").hidden=fb.sug.length>0}
 function text(){const v=id=>($("#"+id).value||"").trim()||"(nothing written)";
- return ["Pretty Little Things story plan: feedback from "+v("fname"),"","Note from the Today page:",v("f0"),"","Videos:",VIDEOS.map(x=>"- "+x.title+" ("+x.style+", "+fmt(x.date)+"): "+(((fb.vid||{})[x.id]||"").trim()||"(nothing written)")).join("\n"),"","1. The story and the four acts:",v("f1"),"","2. Calendar suggestions:",fb.sug.length?fb.sug.slice().sort((a,b)=>a.d<b.d?-1:1).map(x=>"- "+fmt(x.d)+" "+x.d.slice(0,4)+": "+x.t).join("\n"):"(none)","",
+ return ["Pretty Little Things story plan: feedback from "+v("fname"),"","Note from the Today page:",v("f0"),"","Videos:",reviewVideos().filter(x=>(fb.vid?.[x.videoId]||"").trim()).map(x=>"- "+x.title+" ["+x.videoId+" · "+x.date+"]: "+fb.vid[x.videoId].trim()).join("\n"),"","1. The story and the four acts:",v("f1"),"","2. Calendar suggestions:",fb.sug.length?fb.sug.slice().sort((a,b)=>a.d<b.d?-1:1).map(x=>"- "+fmt(x.d)+" "+x.d.slice(0,4)+": "+x.t).join("\n"):"(none)","",
  "3. Styles I like most: "+(fb.pick.length?fb.pick.join(", "):"(none picked)"),v("f3"),"","4. Out of Colours products to feature:",v("f4"),"","5. How Patrick Long should be shown:",v("f5"),"","6. Anything else:",v("f6")].join("\n")}
 const said=m=>{$("#sent").textContent=m;$("#sent0").textContent=m};
 $("#bsend").onclick=async()=>{const t=text();
@@ -549,6 +577,7 @@ $("#bcopy").onclick=async()=>{const t=text(),o=$("#fout");o.hidden=false;o.value
 $("#bdl").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text()],{type:"text/plain"}));a.download="PLT-story-plan-feedback.txt";a.click();said("Saved as PLT-story-plan-feedback.txt.")};
 // ============================================================ start
 draw();show();sugs();vidfb();feedLine();today();
+setInterval(vidfb,15000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)vidfb()});
 if(CONFIG.dataUrl&&location.protocol!=="file:"){loadFeed(CONFIG.dataUrl);setInterval(()=>loadFeed(CONFIG.dataUrl),5*60*1000)}
 document.querySelectorAll(".kick").forEach(k=>{k.textContent=k.textContent.replace(/^\d of 7( · )?/,"")});
 // ============================================================ Alex's explainers (a player shows only when its video exists)
