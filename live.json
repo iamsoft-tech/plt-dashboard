@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-19T18:01+08:00",
+  "updated": "2026-11-19T18:06+08:00",
   "total": 10439,
   "growth": null,
   "accounts": [
@@ -50,7 +50,34 @@
     },
     {
       "previewReady": true,
-      "releases": [],
+      "releases": [
+        {
+          "handle": "alex.mei1212",
+          "url": "https://www.tiktok.com/@alex.mei1212/video/7709820591737457941",
+          "views": null,
+          "viewsAsOf": null,
+          "likes": null,
+          "comments": null,
+          "saves": null,
+          "newFollowers": null,
+          "watch": null,
+          "completion": null,
+          "retention": null
+        },
+        {
+          "handle": "ooc.ceo",
+          "url": "https://www.tiktok.com/@ooc.ceo/video/7709820932256173333",
+          "views": null,
+          "viewsAsOf": null,
+          "likes": null,
+          "comments": null,
+          "saves": null,
+          "newFollowers": null,
+          "watch": null,
+          "completion": null,
+          "retention": null
+        }
+      ],
       "videoId": "1fdce921-f063-4510-9a09-fb4a3b8e7070",
       "title": "Genius in One Language, Potato in Another",
       "account": "@alex.mei.iamsoft, @myoutofcoloursceo, @alex.mei1212, @ooc.ceo",
@@ -60,8 +87,13 @@
       "time": "18:00",
       "views": null,
       "comments": null,
-      "urls": [],
-      "url": ""
+      "urls": [
+        "https://www.instagram.com/reel/Df60XnuOGqO/",
+        "https://www.tiktok.com/@alex.mei1212/video/7709820591737457941",
+        "https://www.instagram.com/reel/Df60iSggkwT/",
+        "https://www.tiktok.com/@ooc.ceo/video/7709820932256173333"
+      ],
+      "url": "https://www.instagram.com/reel/Df60XnuOGqO/"
     },
     {
       "previewReady": true,
