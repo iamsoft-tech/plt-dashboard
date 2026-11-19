@@ -1,35 +1,35 @@
 {
-  "updated": "2026-11-19T23:46+08:00",
+  "updated": "2026-11-20T00:01+08:00",
   "total": 10439,
-  "growth": null,
+  "growth": 0,
   "accounts": [
     {
       "name": "alex.mei1212",
       "platform": "tiktok",
       "followers": 0,
       "netPeriods": {},
-      "growth": null
+      "growth": 0
     },
     {
       "name": "ooc.ceo",
       "platform": "tiktok",
       "followers": 10436,
       "netPeriods": {},
-      "growth": null
+      "growth": 0
     },
     {
       "name": "alex.mei.iamsoft",
       "platform": "instagram",
       "followers": 0,
       "netPeriods": {},
-      "growth": null
+      "growth": 0
     },
     {
       "name": "myoutofcoloursceo",
       "platform": "instagram",
       "followers": 3,
       "netPeriods": {},
-      "growth": null
+      "growth": 0
     }
   ],
   "posts": [
@@ -623,10 +623,17 @@
       "ooc.ceo": 10436,
       "alex.mei.iamsoft": 0,
       "myoutofcoloursceo": 3
+    },
+    "2026-11-20": {
+      "alex.mei1212": 0,
+      "ooc.ceo": 10436,
+      "alex.mei.iamsoft": 0,
+      "myoutofcoloursceo": 3
     }
   },
   "history": {
-    "2026-11-19": 10439
+    "2026-11-19": 10439,
+    "2026-11-20": 10439
   },
   "growthLabel": "New followers (net since yesterday)"
 }
