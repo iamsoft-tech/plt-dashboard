@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-19T14:51+08:00",
+  "updated": "2026-11-19T15:11+08:00",
   "total": 10439,
   "growth": null,
   "accounts": [
@@ -7,24 +7,28 @@
       "name": "alex.mei1212",
       "platform": "tiktok",
       "followers": 0,
+      "netPeriods": {},
       "growth": null
     },
     {
       "name": "ooc.ceo",
       "platform": "tiktok",
       "followers": 10436,
+      "netPeriods": {},
       "growth": null
     },
     {
       "name": "alex.mei.iamsoft",
       "platform": "instagram",
       "followers": 0,
+      "netPeriods": {},
       "growth": null
     },
     {
       "name": "myoutofcoloursceo",
       "platform": "instagram",
       "followers": 3,
+      "netPeriods": {},
       "growth": null
     }
   ],
@@ -81,25 +85,53 @@
           "handle": "alex.mei.iamsoft",
           "url": "https://www.instagram.com/reel/Df1BjyNQrze/",
           "views": 140,
-          "viewsAsOf": "2026-11-18 21:52"
+          "viewsAsOf": "2026-11-18 21:52",
+          "likes": null,
+          "comments": null,
+          "saves": null,
+          "newFollowers": null,
+          "watch": null,
+          "completion": null,
+          "retention": null
         },
         {
           "handle": "alex.mei1212",
           "url": "https://www.tiktok.com/@alex.mei1212/video/7708985557719797010",
           "views": 133,
-          "viewsAsOf": "2026-11-18 21:52"
+          "viewsAsOf": "2026-11-18 21:52",
+          "likes": null,
+          "comments": null,
+          "saves": null,
+          "newFollowers": null,
+          "watch": null,
+          "completion": null,
+          "retention": null
         },
         {
           "handle": "myoutofcoloursceo",
           "url": "https://www.instagram.com/reel/Df1BjutjDB_/",
           "views": 186,
-          "viewsAsOf": "2026-11-18 21:52"
+          "viewsAsOf": "2026-11-18 21:52",
+          "likes": null,
+          "comments": null,
+          "saves": null,
+          "newFollowers": null,
+          "watch": null,
+          "completion": null,
+          "retention": null
         },
         {
           "handle": "ooc.ceo",
           "url": "https://www.tiktok.com/@ooc.ceo/video/7708985583825177908",
           "views": 287,
-          "viewsAsOf": "2026-11-18 21:52"
+          "viewsAsOf": "2026-11-18 21:52",
+          "likes": null,
+          "comments": null,
+          "saves": null,
+          "newFollowers": null,
+          "watch": null,
+          "completion": null,
+          "retention": null
         }
       ],
       "videoId": "1fd35d65-9731-559b-9930-e24ccadb42e0",
@@ -126,7 +158,14 @@
           "handle": "ooc.ceo",
           "url": "https://www.tiktok.com/@ooc.ceo/video/7707547731115511047",
           "views": 348,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 2,
+          "comments": 0,
+          "saves": 0,
+          "newFollowers": null,
+          "watch": 3.35,
+          "completion": 0.0261,
+          "retention": null
         }
       ],
       "videoId": "8a2dcb29-66f2-59d0-845f-b03aa6a5f84c",
@@ -150,7 +189,14 @@
           "handle": "ooc.ceo",
           "url": "https://www.tiktok.com/@ooc.ceo/video/7707563315819547910",
           "views": 130,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 3,
+          "comments": 0,
+          "saves": 0,
+          "newFollowers": null,
+          "watch": 2.81,
+          "completion": 0,
+          "retention": null
         }
       ],
       "videoId": "0d86a6ac-92dd-59ed-8676-afe7a02b89c0",
@@ -174,7 +220,14 @@
           "handle": "ooc.ceo",
           "url": "https://www.tiktok.com/@ooc.ceo/video/7706573087172742408",
           "views": 69,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 0,
+          "comments": 0,
+          "saves": 0,
+          "newFollowers": null,
+          "watch": 2.15,
+          "completion": 0,
+          "retention": null
         }
       ],
       "videoId": "b8b7aa19-9ccc-5b64-8d8a-38eb20715ef6",
@@ -198,7 +251,14 @@
           "handle": "ooc.ceo",
           "url": "https://www.tiktok.com/@ooc.ceo/video/7705460389953178898?utm_campaign=tt4d_open_api&utm_source=7608030276714774544",
           "views": 3908,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 9,
+          "comments": 1,
+          "saves": 0,
+          "newFollowers": null,
+          "watch": 2.37,
+          "completion": 0.0039,
+          "retention": null
         }
       ],
       "videoId": "589e8dac-8fb8-54ac-af39-e2f6b3f542c2",
@@ -222,7 +282,14 @@
           "handle": "alex.mei1212",
           "url": "https://www.tiktok.com/@alex.mei1212/video/7705816133424680212?utm_campaign=tt4d_open_api&utm_source=7608030276714774544",
           "views": 174,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 1,
+          "comments": 0,
+          "saves": 0,
+          "newFollowers": null,
+          "watch": 4.64,
+          "completion": 0.0173,
+          "retention": null
         }
       ],
       "videoId": "1cca9572-64c9-55e8-8643-796442185570",
@@ -246,7 +313,14 @@
           "handle": "ooc.ceo",
           "url": "https://www.tiktok.com/@ooc.ceo/video/7705089619150277909?utm_campaign=tt4d_open_api&utm_source=7608030276714774544",
           "views": 4453,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 10,
+          "comments": 1,
+          "saves": 1,
+          "newFollowers": null,
+          "watch": 3.35,
+          "completion": 0.0043,
+          "retention": null
         }
       ],
       "videoId": "a222010c-bf19-51c8-9b07-2862e7d0fddf",
@@ -270,7 +344,14 @@
           "handle": "alex.mei1212",
           "url": "https://www.tiktok.com/@alex.mei1212/video/7705445079342763270?utm_campaign=tt4d_open_api&utm_source=7608030276714774544",
           "views": 164,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 1,
+          "comments": 0,
+          "saves": 0,
+          "newFollowers": null,
+          "watch": 2.43,
+          "completion": 0.0064,
+          "retention": null
         }
       ],
       "videoId": "a42ff68f-bf82-523a-ab55-99c7868d3d35",
@@ -294,7 +375,14 @@
           "handle": "ooc.ceo",
           "url": "https://www.tiktok.com/@ooc.ceo/video/7704826764496735496?utm_campaign=tt4d_open_api&utm_source=7608030276714774544",
           "views": 12731,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 27,
+          "comments": 0,
+          "saves": 1,
+          "newFollowers": null,
+          "watch": 3.98,
+          "completion": 0.0192,
+          "retention": null
         }
       ],
       "videoId": "60133a73-a0e0-5aea-b926-3b0f61f80506",
@@ -318,7 +406,14 @@
           "handle": "alex.mei1212",
           "url": "https://www.tiktok.com/@alex.mei1212/video/7705074709578435858?utm_campaign=tt4d_open_api&utm_source=7608030276714774544",
           "views": 129,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 1,
+          "comments": 0,
+          "saves": 0,
+          "newFollowers": null,
+          "watch": 3.17,
+          "completion": 0.0132,
+          "retention": null
         }
       ],
       "videoId": "26e31f2a-94d9-526a-b4b6-8b4fb9751776",
@@ -342,7 +437,14 @@
           "handle": "ooc.ceo",
           "url": "https://www.tiktok.com/@ooc.ceo/video/7704680262113824052?utm_campaign=tt4d_open_api&utm_source=7608030276714774544",
           "views": 3672,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 3,
+          "comments": 0,
+          "saves": 1,
+          "newFollowers": null,
+          "watch": 2.33,
+          "completion": 0.0028,
+          "retention": null
         }
       ],
       "videoId": "43ed2242-13dd-586b-be13-37c90177f17a",
@@ -366,7 +468,14 @@
           "handle": "alex.mei1212",
           "url": "https://www.tiktok.com/@alex.mei1212/video/7704703327325539585?utm_campaign=tt4d_open_api&utm_source=7608030276714774544",
           "views": 82,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 1,
+          "comments": 0,
+          "saves": 0,
+          "newFollowers": null,
+          "watch": 3.2,
+          "completion": 0.0115,
+          "retention": null
         }
       ],
       "videoId": "edb2e2d1-e41e-5f51-9705-49efcb9ed809",
@@ -390,7 +499,14 @@
           "handle": "ooc.ceo",
           "url": "https://www.tiktok.com/@ooc.ceo/video/7704084850864704820?utm_campaign=tt4d_open_api&utm_source=7608030276714774544",
           "views": 13449,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 32,
+          "comments": 2,
+          "saves": 6,
+          "newFollowers": null,
+          "watch": 3.79,
+          "completion": 0.3593,
+          "retention": null
         }
       ],
       "videoId": "1027d30f-6d5d-5bb0-800a-d9eba442de86",
@@ -414,7 +530,14 @@
           "handle": "ooc.ceo",
           "url": "https://www.tiktok.com/@ooc.ceo/video/7703341950400761096?utm_campaign=tt4d_open_api&utm_source=7608030276714774544",
           "views": 10315,
-          "viewsAsOf": null
+          "viewsAsOf": null,
+          "likes": 35,
+          "comments": 1,
+          "saves": 10,
+          "newFollowers": null,
+          "watch": 3.89,
+          "completion": 0.0558,
+          "retention": null
         }
       ],
       "videoId": "dd22b9eb-60d8-5f11-b994-fa5dd590cf2c",
