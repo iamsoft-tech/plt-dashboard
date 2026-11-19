@@ -227,7 +227,7 @@ footer{padding:18px;text-align:center;font-size:12px;opacity:.8}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{.bar{display:none}.slide{min-height:0;page-break-after:always}}
 </style>
-<style>#accountScope{margin-left:auto;flex:none;max-width:38vw;border:1px solid var(--line);border-radius:12px;padding:5px;background:#fff7ef;color:#391c35;font:inherit}.bar nav{min-width:0;overflow-x:auto}.day [data-video]{cursor:pointer;text-align:left;width:100%;font:inherit;font-size:11px}.blk.scheduled{background:#ffe7ad}.cal .day{display:block}.daypick{border:0;background:transparent;text-align:left;width:100%;padding:0;color:inherit;font:inherit;cursor:pointer}</style><style>#s0{min-height:0}#s0 .in{min-width:0;width:100%}#glance{display:flex;flex-wrap:wrap;gap:10px}#glance>div{min-width:140px}#results.video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.video-grid article{min-width:0;padding:12px;background:#fff9f2;border:1px solid var(--line);border-radius:14px;overflow-wrap:anywhere}.video-grid strong,.video-grid small{display:block}.video-grid small{margin:5px 0}.vpreview{width:100%;height:155px;display:block;border:0;border-radius:8px;background:#331b30;object-fit:contain}.vaccounts{display:flex;flex-wrap:wrap;gap:3px 10px;margin:6px 0;font-size:13px}.vaccounts a{overflow-wrap:anywhere}#detail .vpreview{height:240px}.video-grid .stats{font-size:12px;color:var(--muted)}.cal-preview{margin-block:10px}.bar nav{overflow:visible;flex-wrap:wrap}@media(max-width:700px){#results.video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bar{position:sticky;flex-wrap:wrap}.bar nav{order:2;flex-basis:100%}.slide{padding-top:24px}.bar #accountScope{margin-left:auto}}@media(max-width:480px){#results.video-grid{grid-template-columns:minmax(0,1fr)}.vpreview{height:185px}}</style></head>
+<style>#accountScope{margin-left:auto;flex:none;max-width:38vw;border:1px solid var(--line);border-radius:12px;padding:5px;background:#fff7ef;color:#391c35;font:inherit}.bar nav{min-width:0;overflow-x:auto}.day [data-video]{cursor:pointer;text-align:left;width:100%;font:inherit;font-size:11px}.blk.scheduled{background:#ffe7ad}.cal .day{display:block}.daypick{border:0;background:transparent;text-align:left;width:100%;padding:0;color:inherit;font:inherit;cursor:pointer}</style><style>#s0{min-height:0}#s0 .in{min-width:0;width:100%}#glance{display:flex;flex-wrap:wrap;gap:10px}#glance>div{min-width:140px}#results.video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.video-grid article{min-width:0;padding:12px;background:#fff9f2;border:1px solid var(--line);border-radius:14px;overflow-wrap:anywhere}.video-grid strong,.video-grid small{display:block}.video-grid small{margin:5px 0}.vpreview{width:100%;height:155px;display:block;border:0;border-radius:8px;background:#331b30;object-fit:contain}.vaccounts{display:flex;flex-wrap:wrap;gap:3px 10px;margin:6px 0;font-size:13px}.vaccounts a{overflow-wrap:anywhere}#detail .vpreview{height:240px}.video-grid .stats{font-size:12px;color:var(--muted)}.cal-preview{margin-block:10px}.bar nav{overflow:visible;flex-wrap:wrap}@media(max-width:700px){#results.video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bar{position:sticky;flex-wrap:wrap}.bar nav{order:2;flex-basis:100%}.slide{padding-top:24px}.bar #accountScope{margin-left:auto}}@media(max-width:480px){#results.video-grid{grid-template-columns:minmax(0,1fr)}.vpreview{height:185px}}</style><style>#cal [data-video][aria-pressed="true"]{background:#a5193a;color:white;outline:2px solid #641027;outline-offset:1px}.periodCtl{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px}.periodCtl select{font:inherit;border-radius:8px;padding:4px}.analyticsPanel{margin:12px 0}.analyticsPanel summary{cursor:pointer;font-weight:700}#comparison,#retention{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,195px),1fr));gap:10px}#comparison article,#retention figure{padding:10px;background:#fff9f2;border-radius:10px;border:1px solid var(--line);margin:5px 0}#comparison small{display:block}#comparison p{font-size:13px;margin:4px 0}#retention svg{width:100%}#retention svg text{font:9px sans-serif;fill:currentColor}</style></head>
 <body>
 <div class="bar"><b>Pretty Little Things</b><nav id="nav">
 <a href="#s0">Today</a><a href="#s1">Overview</a><a href="#s2">Act 0</a><a href="#s3">Acts 1-3</a><a href="#s4">The videos</a><a href="#s5">Characters</a><a href="#s6">Calendar</a><a href="#s7">Feedback</a></nav><select id="accountScope" aria-label="Account"><option value="">All accounts</option><option value="ooc.ceo">OOC · TikTok</option><option value="myoutofcoloursceo">OOC · Instagram</option><option value="alex.mei1212">Alex Mei · TikTok</option><option value="alex.mei.iamsoft">Alex Mei · Instagram</option></select></div>
@@ -235,7 +235,7 @@ footer{padding:18px;text-align:center;font-size:12px;opacity:.8}
 <!-- 0 TODAY -->
 <section class="slide" id="s0"><div class="in">
  <div class="kick" id="todaydate"></div><h2>Today</h2>
- <div class="glance" id="glance"></div>
+ <label class="periodCtl">Analytics period <select id="period"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option></select></label><div class="glance" id="glance"></div><p class="sm" id="periodNote"></p><details open class="analyticsPanel"><summary>Account comparison</summary><div id="comparison"></div></details><div id="retention"></div>
  <h3 class="sec">Campaign videos</h3>
  <div id="results" class="video-grid" aria-label="Campaign videos"></div>
  <p class="feedline muted" id="dataline"></p>
@@ -453,7 +453,7 @@ function handles(p){return (p.account||p.where||"").split(",").map(x=>x.trim().r
 function inScope(p){return !scope()||(p.status==="posted"?(p.releases||[]).some(r=>r.handle===scope()):handles(p).includes(scope()))}
 function deliveries(p){return (p.releases||[]).filter(r=>!scope()||r.handle===scope())}
 function num(n){return Number.isFinite(n)?n.toLocaleString():"—"}
-function counts(r){return num(r.views)+" views"+(r.viewsAsOf?" ("+esc(r.viewsAsOf.slice(0,10))+")":"")+" · "+num(r.newFollowers)+" new followers"}
+function counts(r){return num(r.views)+" views"+(r.viewsAsOf?" ("+esc(r.viewsAsOf.slice(0,10))+")":"")+" · "+num(r.likes)+" likes · "+num(r.comments)+" comments<br>"+seconds(r.watch)+" avg watch · "+percent(r.completion)+" finished · "+num(r.newFollowers)+" follows"}
 
 function releases(day){
  const groups=new Map(), rows=(posted[day]||[]).filter(inScope);
@@ -467,7 +467,7 @@ function releases(day){
 }
 function shown(day){const p=plan(day);return {blocks:scope()?[]:p.blocks.filter(b=>on.has(b.k)),keys:p.keys.filter(()=>on.has("key"))}}
 function statuses(g){return [...new Set(g.rows.map(p=>p.status==="posted"?"Posted":"Scheduled"))].join(" / ")}
-function card(g){return '<button type="button" class="blk '+(g.rows.some(p=>p.status==="posted")?"live":"scheduled")+'" data-video="'+esc(g.key)+'" title="'+esc(g.title)+'">'+esc(statuses(g))+' · '+esc(g.title)+'</button>'}
+function card(g,day){const active=day===sel&&g.key===selectedVideo;return '<button type="button" class="blk '+(g.rows.some(p=>p.status==="posted")?"live":"scheduled")+'" aria-pressed="'+active+'" data-video="'+esc(g.key)+'" title="'+esc(g.title)+'">'+(active?'✓ ':'')+esc(statuses(g))+' · '+esc(g.title)+'</button>'}
 function accountLinks(p){
  if(p.status==="posted")return deliveries(p);
  return handles(p).filter(h=>h&&(!scope()||scope()===h)).map(handle=>{
@@ -506,7 +506,7 @@ function draw(){const c=$("#cal");c.innerHTML="";["Mon","Tue","Wed","Thu","Fri",
   wk.forEach(s=>{const a=actOf(s),p=shown(s),dn=D(s).getUTCDate();
    const b=el("div","day"+(a?" a"+a.n:"")+(s<TODAY?" past":"")+(s===TODAY?" today":"")+(s===sel?" sel":"")+((view!=="all"&&s.slice(0,7)!==view)||s>END?" x":""));
    b.type="button";b.dataset.d=s;b.setAttribute("aria-label",fmt(s));
-   b.innerHTML='<button type="button" class="daypick" aria-label="'+esc(fmt(s))+'"><span class="n"><span>'+dn+((dn===1||D(s).getUTCDay()===1)?" "+MON[D(s).getUTCMonth()].slice(0,3):"")+'</span><span>'+(fb.sug.some(x=>x.d===s)?"✎":"")+(s===TODAY?" today":"")+'</span></span></button>'+releases(s).map(card).join("")+
+   b.innerHTML='<button type="button" class="daypick" aria-label="'+esc(fmt(s))+'"><span class="n"><span>'+dn+((dn===1||D(s).getUTCDay()===1)?" "+MON[D(s).getUTCMonth()].slice(0,3):"")+'</span><span>'+(fb.sug.some(x=>x.d===s)?"✎":"")+(s===TODAY?" today":"")+'</span></span></button>'+releases(s).map(g=>card(g,s)).join("")+
     p.keys.concat(p.blocks).map(e=>'<span class="blk '+e.k+'"><span class="lg">'+esc(e.label)+'</span><span class="sh">'+esc(e.sh)+'</span></span>').join("");
    b.onclick=e=>selectDay(s,e.target.closest("[data-video]")?.dataset.video??null);c.appendChild(b)})}}
 function example(b){const k=b.k==="exp"?b.m:b.k;
@@ -525,7 +525,7 @@ function show(){
  const a=actOf(sel),p=shown(sel),pane=$("#detail"),rows=p.keys.concat(p.blocks),mine=fb.sug.filter(x=>x.d===sel);
  const note=b=>b.k==="gen"&&!MEDIA.genVid?"":(b.k==="story"||b.k==="con")?"":"";
  pane.innerHTML="<h3>"+fmt(sel)+(a?" · Act "+a.n+", "+a.title:"")+"</h3>"+
-  (groups.length?groups.map(card).join(""):"")+(rows.length?'<p class="sm" style="margin:0">'+p.blocks.length+" video"+(p.blocks.length===1?"":"s")+" on this day.</p>"+rows.map(b=>'<div class="drow"><div><span class="blk '+b.k+'">'+esc(b.label)+'</span><br>'+esc(b.text)+note(b)+(b.url?' <a href="'+esc(b.url)+'" target="_blank" rel="noopener">Open the post</a>':"")+'</div><div>'+example(b)+'</div></div>').join("")
+  (groups.length?groups.map(g=>card(g,sel)).join(""):"")+(rows.length?'<p class="sm" style="margin:0">'+p.blocks.length+" video"+(p.blocks.length===1?"":"s")+" on this day.</p>"+rows.map(b=>'<div class="drow"><div><span class="blk '+b.k+'">'+esc(b.label)+'</span><br>'+esc(b.text)+note(b)+(b.url?' <a href="'+esc(b.url)+'" target="_blank" rel="noopener">Open the post</a>':"")+'</div><div>'+example(b)+'</div></div>').join("")
    :groups.length?'':'<p class="muted">No matching items on this day'+(sel<FIRST?" (before the plan starts)":"")+".</p>")+
   (mine.length?'<p class="sm" style="margin:8px 0 0"><b>Your suggestion'+(mine.length>1?"s":"")+":</b> "+mine.map(x=>esc(x.t)).join(" · ")+"</p>":"")+
   '<div class="sug"><label for="sugt">Suggest something for '+fmt(sel)+'</label><textarea id="sugt" style="min-height:48px" placeholder="For example: feature the new lip tint here, or move this to the weekend."></textarea><button class="go sm2" id="sugb" type="button">Add suggestion</button></div>';
@@ -568,10 +568,63 @@ async function loadFeed(u){feedState="loading";feedLine();try{const r=await fetc
   a.forEach(p=>{const d=String(p.date||p.postedAt||p.goLive||"").slice(0,10);if(!/^\d{4}-\d\d-\d\d$/.test(d))return;(posted[d]=posted[d]||[]).push({previewReady:!!p.previewReady,releases:(p.releases||[]).filter(r=>typeof r.url==="string"&&r.url.startsWith("https://")),time:p.time||"",videoId:p.videoId,comments:Number.isFinite(p.comments)?p.comments:null,urls:(p.urls||[p.url]).filter(u=>typeof u==="string"&&u.startsWith("https://")),platform:String(p.platform||""),title:String(p.title||"Video"),where:String(p.account||p.platform||""),style:String(p.style||""),views:Number.isFinite(p.views)?p.views:null,status:String(p.status||"posted"),url:/^https:\/\//.test(String(p.url||""))?String(p.url):""})});
   DATA=Array.isArray(j)?{}:j;feedState="on";feedTime=String(DATA.updated||new Date().toLocaleString()).slice(0,40)}catch(e){feedState="none"}feedLine();draw();show();today();vidfb()}
 // ============================================================ today
+const finite=Number.isFinite;
+function summary(records){
+ const field=(k)=>records.filter(r=>finite(r[k]));
+ const sum=k=>{const rows=field(k);return rows.length?rows.reduce((n,r)=>n+r[k],0):null};
+ const watched=field("watch").filter(r=>r.views>0);
+ const finished=field("completion").filter(r=>r.completion>=0&&r.completion<=1);
+ return {views:sum("views"),likes:sum("likes"),comments:sum("comments"),saves:sum("saves"),
+ watch:watched.length?watched.reduce((n,r)=>n+r.watch*r.views,0)/watched.reduce((n,r)=>n+r.views,0):null,
+ completion:finished.length?finished.reduce((n,r)=>n+r.completion,0)/finished.length:null};
+}
+function seconds(v){return finite(v)?v.toFixed(1)+" s":"—"}
+function percent(v){return finite(v)?(100*v).toFixed(1)+"%":"—"}
+function signed(v){return finite(v)?(v>0?"+":"")+num(v):"—"}
+function retentionPlot(platform,rows){
+ const title=platform==="tiktok"?"TikTok":"Instagram";
+ const curves=rows.filter(r=>Array.isArray(r.retention)&&r.retention.length);
+ let points=[],label="";
+ if(curves.length){
+  label="Average audience retention by second";
+  for(let i=0;i<60;i++){const values=curves.map(r=>r.retention[i]).filter(v=>finite(v)&&v>=0&&v<=1);if(!values.length)break;points.push([i+"s",values.reduce((a,b)=>a+b,0)/values.length]);}
+ }else{
+  label="Average completion by release date";
+  for(const date of [...new Set(rows.map(r=>r.day))].sort()){
+   const val=summary(rows.filter(r=>r.day===date)).completion;
+   if(finite(val))points.push([date.slice(5),val]);
+  }
+ }
+ if(!points.length)return '<p><b>'+title+'</b> · No retention or completion data for this period.</p>';
+ const W=520,H=96,pad=24,x=i=>pad+(W-2*pad)*(points.length===1?0.5:i/(points.length-1)), y=v=>H-12-(H-22)*v;
+ const dots=points.map(([d,v],i)=>'<circle cx="'+x(i)+'" cy="'+y(v)+'" r="4" fill="#9b3059"><title>'+esc(d)+' · '+percent(v)+'</title></circle>').join("");
+ return '<figure><figcaption><b>'+title+'</b> · '+label+'</figcaption><svg role="img" aria-label="'+title+' '+label+'" viewBox="0 0 '+W+' '+(H+16)+'"><path d="M24 10V84H496" stroke="#9a8690" fill="none"/><polyline points="'+points.map((p,i)=>x(i)+','+y(p[1])).join(" ")+'" fill="none" stroke="#9b3059" stroke-width="2"/>'+dots+'<text x="0" y="11">100%</text><text x="0" y="84">0%</text><text x="24" y="108">'+esc(points[0][0])+'</text><text x="496" y="108" text-anchor="end">'+esc(points.at(-1)[0])+'</text></svg></figure>';
+}
+function analytics(){
+ const end=new Date(Date.now()+8*3600000).toISOString().slice(0,10),days=Number($("#period").value),start=addDays(end,1-days);
+ const accounts=(DATA?.accounts||[]).filter(a=>!scope()||a.name===scope()),baseline=DATA?.accountHistory?.[addDays(start,-1)]||{};
+ const net=a=>finite(a.netPeriods?.[days])?a.netPeriods[days]:finite(a.followers)&&finite(baseline[a.name])?a.followers-baseline[a.name]:null;
+ const rows=[],seen=new Set();
+ for(const post of DATA?.posts||[]){if(post.status!=="posted"||post.date<start||post.date>end)continue;
+ for(const r of post.releases||[]){if(!accounts.some(a=>a.name===r.handle))continue;
+ const key=r.url.split("?")[0];if(seen.has(key))continue;seen.add(key);rows.push({...r,day:post.date});}}
+ const all=summary(rows), total=accounts.length&&accounts.every(a=>finite(a.followers))?accounts.reduce((n,a)=>n+a.followers,0):null;
+ const gain=accounts.length&&accounts.every(a=>finite(net(a)))?accounts.reduce((n,a)=>n+net(a),0):null;
+ const stats=[["Total followers",num(total)],["Net new followers ("+days+"d)",signed(gain)],["Total likes",num(all.likes)],["Total comments",num(all.comments)],["Avg watch time",seconds(all.watch)],["Avg finished",percent(all.completion)]];
+ $("#glance").innerHTML=stats.map(([k,v])=>"<div><b>"+v+"</b>"+k+"</div>").join("");
+ $("#periodNote").textContent=start+" to "+end+" · Lifetime metrics for videos released in this window. Totals include reported values. Watch time is weighted by views; completion averages the reported release percentages. A dash means unavailable.";
+ const plots=[],comparison=[];
+ for(const platform of ["tiktok","instagram"]){const group=accounts.filter(a=>a.platform===platform);if(!group.length)continue;
+ for(const a of group){const subset=rows.filter(r=>r.handle===a.name),v=summary(subset);
+ comparison.push('<article><b>@'+esc(a.name)+'</b><small>'+esc(platform.toUpperCase())+' · '+subset.length+' releases</small><p>'+signed(net(a))+' net followers · '+num(v.views)+' views<br>'+num(v.likes)+' likes · '+num(v.comments)+' comments<br>'+seconds(v.watch)+' avg watch · '+percent(v.completion)+' finished'+(platform==="instagram"?'<br>'+num(v.saves)+' saves':'')+'</p></article>');}
+ plots.push(retentionPlot(platform,rows.filter(r=>group.some(a=>a.name===r.handle))));}
+ $("#comparison").innerHTML=comparison.join("");$("#retention").innerHTML=plots.join("");
+}
+$("#period").onchange=analytics;
+
 function today(){
  $("#todaydate").textContent=fmt(TODAY)+" "+TODAY.slice(0,4);
- const account=(DATA?.accounts||[]).find(a=>a.name===scope()),total=scope()?account?.followers:DATA?.total,gain=scope()?account?.growth:DATA?.growth;
- $("#glance").innerHTML="<div><b>"+num(total)+"</b>Total followers</div><div><b>"+(gain>0?"+":"")+num(gain)+"</b>"+esc(scope()?"New followers (net since yesterday)":DATA?.growthLabel||"New followers (net)")+"</div>";
+ analytics();
  const todayKey=new Date(Date.now()+8*3600000).toISOString().slice(0,10),tomorrow=addDays(todayKey,1);
  const days=[todayKey,tomorrow,...Object.keys(posted).filter(d=>d<todayKey).sort().reverse()];
  const cards=[],seenVideos=new Set();
