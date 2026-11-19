@@ -227,10 +227,10 @@ footer{padding:18px;text-align:center;font-size:12px;opacity:.8}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{.bar{display:none}.slide{min-height:0;page-break-after:always}}
 </style>
-</head>
+<style>#accountScope{margin-left:auto;flex:none;max-width:38vw;border:1px solid var(--line);border-radius:12px;padding:5px;background:#fff7ef;color:#391c35;font:inherit}.bar nav{min-width:0;overflow-x:auto}.day [data-video]{cursor:pointer;text-align:left;width:100%;font:inherit;font-size:11px}.blk.scheduled{background:#ffe7ad}.cal .day{display:block}.daypick{border:0;background:transparent;text-align:left;width:100%;padding:0;color:inherit;font:inherit;cursor:pointer}</style></head>
 <body>
 <div class="bar"><b>Pretty Little Things</b><nav id="nav">
-<a href="#s0">Today</a><a href="#s1">Overview</a><a href="#s2">Act 0</a><a href="#s3">Acts 1-3</a><a href="#s4">The videos</a><a href="#s5">Characters</a><a href="#s6">Calendar</a><a href="#s7">Feedback</a></nav></div>
+<a href="#s0">Today</a><a href="#s1">Overview</a><a href="#s2">Act 0</a><a href="#s3">Acts 1-3</a><a href="#s4">The videos</a><a href="#s5">Characters</a><a href="#s6">Calendar</a><a href="#s7">Feedback</a></nav><select id="accountScope" aria-label="Account"><option value="">All accounts</option><option value="ooc.ceo">OOC · TikTok</option><option value="myoutofcoloursceo">OOC · Instagram</option><option value="alex.mei1212">Alex Mei · TikTok</option><option value="alex.mei.iamsoft">Alex Mei · Instagram</option></select></div>
 
 <!-- 0 TODAY -->
 <section class="slide" id="s0"><div class="in">
@@ -425,7 +425,7 @@ const TYPES={
  con:{name:"Content, 10 s",sh:"10 s",what:"A 10-second engagement video in the content style chosen on 7 December."},
  brand:{name:"Brand post",sh:"Brand",what:"The Out of Colours brand post of the day: audience talk, education, product, audience reply or CEO's Choice. Run by the CTO through Refluencer."}};
 const CYCLE=[["pt","ss"],["sb","nc"],["pt","sb"],["ss","nc"],["pt","nc"],["sb","ss"]],CYCLESTART="2026-11-19"; // ROTATION.md: two of the four style cards a day
-const LAYERS=[["pt","Paper theatre"],["sb","Storybook"],["ss","Stage and screen"],["nc","Neon cel"],["gen","Full motion"],["exp","New style"],["story","Story"],["con","Content 10 s"],["brand","Brand"],["key","Key dates"],["live","Posted (live)"]];
+const LAYERS=[["pt","Paper theatre"],["sb","Storybook"],["ss","Stage and screen"],["nc","Neon cel"],["gen","Full motion"],["exp","New style"],["story","Story"],["con","Content 10 s"],["brand","Brand"],["key","Key dates"],["live","Posted"],["scheduled","Scheduled"]];
 // ============================================================ helpers
 const $=s=>document.querySelector(s),el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
@@ -451,25 +451,41 @@ function plan(s){const blocks=[],keys=[];if(s<FIRST||s>END)return{blocks,keys};
  if(s===DECISION)keys.push({k:"key",label:"★ Styles chosen",sh:"★",text:"Decision day. From the test numbers we fix the rotation: the storytelling style (a chapter every other day) and the content style (a video every day). We know which videos performed best, and four new styles go into testing."});
  if(REVIEWS.includes(s))keys.push({k:"key",label:"Data review",sh:"Data",text:"Performance review of everything posted in the last two weeks: views, watch time, shares, saves and follows."});
  if(D(s).getUTCDay()===0&&s>=addDays(FIRST,4))keys.push({k:"key",label:"Boost list",sh:"Boost",text:"Sunday highlights. The week's best videos go on a new boosting list for Vicky."});
- (posted[s]||[]).forEach(p=>keys.push({k:"live",label:"✓ "+p.title,sh:"✓",text:"Posted"+(p.where?" on "+p.where:"")+": "+p.title,url:p.url}));
  return{blocks,keys}}
 // ============================================================ state
 const KEY="plt-plan-v2";let fb={};try{fb=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
 fb.pick=fb.pick||[];fb.sug=fb.sug||[];const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(fb))}catch(e){}};
-let on=new Set(LAYERS.map(l=>l[0])),sel=(TODAY>=FIRST&&TODAY<=END)?TODAY:FIRST,view=sel.slice(0,7);
-const shown=(s)=>{const p=plan(s);return{blocks:p.blocks.filter(b=>on.has(b.k)),keys:p.keys.filter(k=>k.k==="live"?on.has("live"):on.has("key"))}};
-// ============================================================ main calendar
+let on=new Set(["live","scheduled"]),sel=null,selectedVideo=null,view=((TODAY>=FIRST&&TODAY<=END)?TODAY:FIRST).slice(0,7);
+const scope=()=>$("#accountScope").value;
+function handles(p){return (p.account||p.where||"").split(",").map(x=>x.trim().replace(/^@/,"").toLowerCase())}
+function inScope(p){return !scope()||handles(p).includes(scope())}
+function releases(day){
+ const groups=new Map(), rows=(posted[day]||[]).filter(inScope);
+ for(const p of rows){
+  const layer=p.status==="posted"?"live":p.status==="scheduled"?"scheduled":"";
+  if(!on.has(layer))continue;
+  const key=[...groups.values()].find(g=>p.videoId&&g.rows.some(r=>r.videoId===p.videoId))?.key||p.title.trim().normalize().toLowerCase()||p.videoId;
+  const group=groups.get(key)||{key,title:p.title,rows:[]};group.rows.push(p);groups.set(key,group);
+ }
+ return [...groups.values()].sort((a,b)=>a.title.localeCompare(b.title));
+}
+function shown(day){const p=plan(day);return {blocks:scope()?[]:p.blocks.filter(b=>on.has(b.k)),keys:p.keys.filter(()=>on.has("key"))}}
+function statuses(g){return [...new Set(g.rows.map(p=>p.status==="posted"?"Posted":"Scheduled"))].join(" / ")}
+function card(g){return '<button type="button" class="blk '+(g.rows.some(p=>p.status==="posted")?"live":"scheduled")+'" data-video="'+esc(g.key)+'" title="'+esc(g.title)+'">'+esc(statuses(g))+' · '+esc(g.title)+'</button>'}
+function versions(g){return g.rows.map(p=>'<div class="drow"><div><b>'+esc(scope()?"@"+scope():p.where)+'</b> · '+esc(p.status)+(p.views!=null?' · '+p.views.toLocaleString()+' views (post total)':'')+(p.comments!=null?' · '+p.comments+' comments (post total)':'')+(p.urls||[]).filter(u=>!scope()||u.toLowerCase().includes("/@"+scope()+"/")||((p.urls||[]).length===1&&handles(p).length===1)||((scope()==="alex.mei.iamsoft"||scope()==="myoutofcoloursceo")&&new URL(u).hostname.endsWith("instagram.com")&&handles(p).filter(h=>h==="alex.mei.iamsoft"||h==="myoutofcoloursceo").length===1)).map((u,i)=>' · <a target="_blank" rel="noopener" href="'+esc(u)+'">Open post'+(p.urls.length>1?" "+(i+1):"")+'</a>').join("")+'</div></div>').join("")}
+function selectDay(day,key=null){sel=day;selectedVideo=key;draw();show();if(innerWidth<1000)$("#detail").scrollIntoView({block:"start"})}
+$("#accountScope").onchange=()=>{selectedVideo=null;draw();show();today();vidfb()};
 function draw(){const c=$("#cal");c.innerHTML="";["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach(d=>c.appendChild(el("div","dow",d)));
  let d=START,lastM=-1;
  while(d<=END){const wk=Array.from({length:7},(_,i)=>addDays(d,i));d=addDays(d,7);
   if(view!=="all"&&!wk.some(s=>s.slice(0,7)===view))continue;
   const m=view==="all"?D(wk[6]).getUTCMonth():+view.slice(5)-1;if(m!==lastM){c.appendChild(el("div","mrow",MON[m]+" "+(m===0?"2027":"2026")));lastM=m}
   wk.forEach(s=>{const a=actOf(s),p=shown(s),dn=D(s).getUTCDate();
-   const b=el("button","day"+(a?" a"+a.n:"")+(s<TODAY?" past":"")+(s===TODAY?" today":"")+(s===sel?" sel":"")+((view!=="all"&&s.slice(0,7)!==view)||s>END?" x":""));
+   const b=el("div","day"+(a?" a"+a.n:"")+(s<TODAY?" past":"")+(s===TODAY?" today":"")+(s===sel?" sel":"")+((view!=="all"&&s.slice(0,7)!==view)||s>END?" x":""));
    b.type="button";b.dataset.d=s;b.setAttribute("aria-label",fmt(s));
-   b.innerHTML='<span class="n"><span>'+dn+((dn===1||D(s).getUTCDay()===1)?" "+MON[D(s).getUTCMonth()].slice(0,3):"")+'</span><span>'+(fb.sug.some(x=>x.d===s)?"✎":"")+(s===TODAY?" today":"")+'</span></span>'+
+   b.innerHTML='<button type="button" class="daypick" aria-label="'+esc(fmt(s))+'"><span class="n"><span>'+dn+((dn===1||D(s).getUTCDay()===1)?" "+MON[D(s).getUTCMonth()].slice(0,3):"")+'</span><span>'+(fb.sug.some(x=>x.d===s)?"✎":"")+(s===TODAY?" today":"")+'</span></span></button>'+releases(s).map(card).join("")+
     p.keys.concat(p.blocks).map(e=>'<span class="blk '+e.k+'"><span class="lg">'+esc(e.label)+'</span><span class="sh">'+esc(e.sh)+'</span></span>').join("");
-   b.onclick=()=>{sel=s;draw();show();if(innerWidth<1000)$("#detail").scrollIntoView({block:"start"})};c.appendChild(b)})}}
+   b.onclick=e=>selectDay(s,e.target.closest("[data-video]")?.dataset.video??null);c.appendChild(b)})}}
 function example(b){const k=b.k==="exp"?b.m:b.k;
  if(k==="pt")return '<video src="'+MEDIA.ptVid+'" poster="'+MEDIA.ptPoster+'" muted loop playsinline autoplay></video>';
  if(k==="sb")return '<video src="'+MEDIA.sbVid+'" poster="'+MEDIA.sbPoster+'" muted loop playsinline autoplay></video>';
@@ -477,18 +493,26 @@ function example(b){const k=b.k==="exp"?b.m:b.k;
  if(k==="stage"||k==="ss")return '<img src="'+MEDIA.stage+'" alt="Stage and screen example">';
  if(k==="gen"&&MEDIA.genVid)return '<video src="'+MEDIA.genVid+'" muted loop playsinline autoplay></video>';
  return ""}
-function show(){const a=actOf(sel),p=shown(sel),pane=$("#detail"),rows=p.keys.concat(p.blocks),mine=fb.sug.filter(x=>x.d===sel);
+function show(){
+ const detail=$("#detail");
+ if(!sel){const newest=Object.keys(posted).sort().reverse().flatMap(day=>(posted[day]||[]).filter(p=>p.status==="posted"&&inScope(p)).sort((a,b)=>b.time.localeCompare(a.time)).map(p=>({day,p})))[0];
+ detail.innerHTML="<h3>Latest release</h3>"+(newest?"<b>"+esc(newest.p.title)+"</b><p>"+esc(newest.day)+"</p>"+versions({rows:[newest.p]}):"<p>No released video for this account.</p>");return}
+ const groups=releases(sel),picked=groups.find(g=>g.key===selectedVideo);
+ if(picked){detail.innerHTML='<button type="button" class="chipb" id="backday">Back to day</button><h3>'+esc(picked.title)+'</h3><p>'+esc(sel)+' · '+statuses(picked)+'</p>'+versions(picked);$("#backday").onclick=()=>selectDay(sel);return}
+ const a=actOf(sel),p=shown(sel),pane=$("#detail"),rows=p.keys.concat(p.blocks),mine=fb.sug.filter(x=>x.d===sel);
  const note=b=>b.k==="gen"&&!MEDIA.genVid?"":(b.k==="story"||b.k==="con")?"":"";
  pane.innerHTML="<h3>"+fmt(sel)+(a?" · Act "+a.n+", "+a.title:"")+"</h3>"+
-  (rows.length?'<p class="sm" style="margin:0">'+p.blocks.length+" video"+(p.blocks.length===1?"":"s")+" on this day.</p>"+rows.map(b=>'<div class="drow"><div><span class="blk '+b.k+'">'+esc(b.label)+'</span><br>'+esc(b.text)+note(b)+(b.url?' <a href="'+esc(b.url)+'" target="_blank" rel="noopener">Open the post</a>':"")+'</div><div>'+example(b)+'</div></div>').join("")
-   :'<p class="muted">Nothing is planned on this day'+(sel<FIRST?" (before the plan starts)":"")+".</p>")+
+  (groups.length?groups.map(card).join(""):"")+(rows.length?'<p class="sm" style="margin:0">'+p.blocks.length+" video"+(p.blocks.length===1?"":"s")+" on this day.</p>"+rows.map(b=>'<div class="drow"><div><span class="blk '+b.k+'">'+esc(b.label)+'</span><br>'+esc(b.text)+note(b)+(b.url?' <a href="'+esc(b.url)+'" target="_blank" rel="noopener">Open the post</a>':"")+'</div><div>'+example(b)+'</div></div>').join("")
+   :groups.length?'':'<p class="muted">No matching items on this day'+(sel<FIRST?" (before the plan starts)":"")+".</p>")+
   (mine.length?'<p class="sm" style="margin:8px 0 0"><b>Your suggestion'+(mine.length>1?"s":"")+":</b> "+mine.map(x=>esc(x.t)).join(" · ")+"</p>":"")+
   '<div class="sug"><label for="sugt">Suggest something for '+fmt(sel)+'</label><textarea id="sugt" style="min-height:48px" placeholder="For example: feature the new lip tint here, or move this to the weekend."></textarea><button class="go sm2" id="sugb" type="button">Add suggestion</button></div>';
+ pane.querySelectorAll("[data-video]").forEach(btn=>btn.onclick=()=>selectDay(sel,btn.dataset.video));
+ const clear=el("button","chipb","Clear selection");clear.onclick=()=>selectDay(null);pane.prepend(clear);
  $("#sugb").onclick=()=>{const t=$("#sugt").value.trim();if(!t)return;fb.sug.push({d:sel,t});save();draw();show();sugs()}}
 [["2026-11","November"],["2026-12","December"],["2027-01","January"],["all","Full view"]].forEach(([k,l])=>{const b=el("button","chipb",l);b.type="button";b.dataset.v=k;b.setAttribute("aria-pressed",k===view);b.onclick=()=>setView(k);$("#views").appendChild(b)});
-function setView(k){view=k;document.querySelectorAll("#views .chipb").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.v)===String(k)));draw()}
-LAYERS.forEach(([k,l])=>{const b=el("button","chipb blk "+(k==="live"?"live":k),l);b.type="button";b.style.fontSize="12px";b.style.padding="4px 10px";b.setAttribute("aria-pressed","true");b.onclick=()=>{on.has(k)?on.delete(k):on.add(k);b.setAttribute("aria-pressed",on.has(k));draw();show()};$("#layers").appendChild(b)});
-function go(s,v){sel=s;setView(s.slice(0,7));show();location.hash="#s6";setTimeout(()=>{const t=document.querySelector('.day[data-d="'+s+'"]');if(t)t.scrollIntoView({block:"center"})},80)}
+function setView(k){view=k;if(k!=="all"&&sel&&!sel.startsWith(k)){sel=null;selectedVideo=null}show();document.querySelectorAll("#views .chipb").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.v)===String(k)));draw()}
+LAYERS.forEach(([k,l])=>{const b=el("button","chipb blk "+(k==="live"?"live":k),l);b.type="button";b.style.fontSize="12px";b.style.padding="4px 10px";b.setAttribute("aria-pressed",String(on.has(k)));b.onclick=()=>{on.has(k)?on.delete(k):on.add(k);b.setAttribute("aria-pressed",on.has(k));draw();show()};$("#layers").appendChild(b)});
+function go(s,v){selectedVideo=null;sel=s;setView(s.slice(0,7));show();location.hash="#s6";setTimeout(()=>{const t=document.querySelector('.day[data-d="'+s+'"]');if(t)t.scrollIntoView({block:"center"})},80)}
 document.addEventListener("click",e=>{const t=e.target.closest("[data-go]");if(t){e.preventDefault();go(t.dataset.go,t.dataset.act)}});
 // ============================================================ mini calendars
 function mini(a){let s=addDays(a.from,-((D(a.from).getUTCDay()+6)%7)),h='<div class="mini" style="--mc:var(--a'+a.n+')">'+["M","T","W","T","F","S","S"].map(x=>'<span class="h">'+x+'</span>').join("");
@@ -518,26 +542,26 @@ function feedLine(){
  $("#feedline").textContent=$("#dataline").textContent=feedState==="none"?text+" | Refresh unavailable":text;
 }
 async function loadFeed(u){feedState="loading";feedLine();try{const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json(),a=Array.isArray(j)?j:(j.posts||[]);posted={};
-  a.forEach(p=>{const d=String(p.date||p.postedAt||p.goLive||"").slice(0,10);if(!/^\d{4}-\d\d-\d\d$/.test(d))return;(posted[d]=posted[d]||[]).push({platform:String(p.platform||""),title:String(p.title||"Video").slice(0,80),where:String(p.account||p.platform||"").slice(0,60),style:String(p.style||""),views:Number.isFinite(p.views)?p.views:null,status:String(p.status||"posted"),url:/^https:\/\//.test(String(p.url||""))?String(p.url):""})});
+  a.forEach(p=>{const d=String(p.date||p.postedAt||p.goLive||"").slice(0,10);if(!/^\d{4}-\d\d-\d\d$/.test(d))return;(posted[d]=posted[d]||[]).push({time:p.time||"",videoId:p.videoId,comments:Number.isFinite(p.comments)?p.comments:null,urls:(p.urls||[p.url]).filter(u=>typeof u==="string"&&u.startsWith("https://")),platform:String(p.platform||""),title:String(p.title||"Video"),where:String(p.account||p.platform||""),style:String(p.style||""),views:Number.isFinite(p.views)?p.views:null,status:String(p.status||"posted"),url:/^https:\/\//.test(String(p.url||""))?String(p.url):""})});
   DATA=Array.isArray(j)?{}:j;feedState="on";feedTime=String(DATA.updated||new Date().toLocaleString()).slice(0,40)}catch(e){feedState="none"}feedLine();draw();show();today();vidfb()}
 // ============================================================ today
 function today(){const days=[addDays(TODAY,-1),TODAY,addDays(TODAY,1)],names=["Yesterday","Today","Tomorrow"];
  $("#todaydate").textContent=fmt(TODAY)+" "+TODAY.slice(0,4);
- const vids=d=>plan(d).blocks.filter(b=>b.k!=="brand"),P=d=>posted[d]||[],sum=(a,f)=>a.reduce((n,x)=>n+f(x),0);
+ const vids=d=>scope()?[]:plan(d).blocks.filter(b=>b.k!=="brand"),P=d=>(posted[d]||[]).filter(inScope),sum=(a,f)=>a.reduce((n,x)=>n+f(x),0);
  const fol=(DATA&&Array.isArray(DATA.followers)?DATA.followers:[]).filter(x=>x&&x.date&&isFinite(x.total)).sort((a,b)=>a.date<b.date?-1:1);
- const g=[["Videos today",vids(TODAY).length],["Videos tomorrow",vids(addDays(TODAY,1)).length]];
+ const count=d=>new Set(P(d).map(p=>p.videoId||p.title)).size;const g=[["Videos today",count(TODAY)],["Videos tomorrow",count(addDays(TODAY,1))]];
  const metric=n=>Number.isFinite(n)?n.toLocaleString():"Awaiting data";
- const growth=DATA?.growth;
- g.unshift(["Total followers",metric(DATA?.total)],[DATA?.growthLabel||"New followers (net)",Number.isFinite(growth)?(growth>0?"+":"")+growth.toLocaleString():"Awaiting baseline"]);
+ const acct=DATA?.accounts?.find(a=>a.name===scope());const growth=scope()?acct?.growth:DATA?.growth;
+ g.unshift(["Total followers",metric(scope()?acct?.followers:DATA?.total)],[(scope()?"New followers (net since yesterday)":DATA?.growthLabel)||"New followers (net)",Number.isFinite(growth)?(growth>0?"+":"")+growth.toLocaleString():"Awaiting baseline"]);
  const mom=vids(TODAY)[0]?moment(TODAY):"";$("#inputline").textContent="what we did today"+(mom?": "+mom.replace(/\.$/,""):"");
- const recent=Object.keys(posted).sort().reverse().flatMap(day=>(posted[day]||[]).filter(x=>x.status==="posted").map(x=>({day,...x}))).slice(0,20);
+ const recent=Object.keys(posted).sort().reverse().flatMap(day=>(posted[day]||[]).filter(x=>x.status==="posted"&&inScope(x)).map(x=>({day,...x}))).slice(0,20);
  $("#results").innerHTML=recent.length?"<table><tr><th>Day</th><th>Post</th><th>Account</th><th>Views</th></tr>"+recent.map(x=>"<tr><td>"+esc(x.day)+"</td><td>"+(x.url?'<a href="'+esc(x.url)+'" target="_blank" rel="noopener">'+esc(x.title)+'</a>':esc(x.title))+"</td><td>"+esc(x.where)+"</td><td>"+(Number.isFinite(x.views)?x.views.toLocaleString():"Unavailable")+"</td></tr>").join("")+"</table>":'<p class="muted">No published posts in the current feed.</p>';
  $("#glance").innerHTML=g.map(x=>"<div><b>"+esc(x[1])+"</b>"+esc(x[0])+"</div>").join("");
  $("#tri").innerHTML=days.map((d,i)=>'<div class="'+(i===1?"now":"")+'"><h3 style="margin:0">'+names[i]+' <span class="sm muted" style="font-family:var(--ui-font-body);font-weight:400">'+fmt(d)+'</span></h3>'+(!vids(d).length&&P(d).length?P(d).map(x=>'<div class="pcard"><div><div class="noex"></div></div><div><b>'+(x.url?'<a href="'+esc(x.url)+'" target="_blank" rel="noopener">'+esc(x.title)+'</a>':esc(x.title))+'</b><br>'+esc(x.where)+' · '+esc(x.platform)+'<br><span class="ok">✓ '+esc(x.status)+'</span>'+(x.views?' · '+x.views.toLocaleString()+' views':'')+'</div></div>').join(""):vids(d).length?vids(d).map(b=>{const nm=(TYPES[b.k]||{}).name||"",hit=P(d).find(x=>x.style&&x.style.toLowerCase()===nm.toLowerCase());
    return '<div class="pcard"><div>'+(example(b)||'<div class="noex"></div>')+'</div><div><span class="blk '+b.k+'">'+esc(b.label)+'</span><br>'+esc(b.text)+'<br>'+(hit?'<span class="ok">✓ '+esc(hit.status)+'</span>'+(hit.views?" · "+hit.views.toLocaleString()+" views":"")+(hit.url?' · <a href="'+esc(hit.url)+'" target="_blank" rel="noopener">open</a>':""):'<span class="muted">planned</span>')+'</div></div>'}).join(""):'<p class="sm muted">Nothing planned.</p>')+'<a class="sm" href="#s6" data-go="'+d+'">Open this day on the calendar →</a></div>').join("");
  if(fol.length>1){const W=300,H=90,n=fol.length,gain=fol.map((x,i)=>i?x.total-fol[i-1].total:0),mg=Math.max(1,...gain),lo=Math.min(...fol.map(x=>x.total)),hi=Math.max(...fol.map(x=>x.total)),bw=W/n;
   $("#chart").innerHTML='<svg viewBox="0 0 '+W+' '+(H+14)+'" style="width:100%;display:block" role="img" aria-label="Followers gained each day and total followers">'+gain.map((v,i)=>'<rect x="'+(i*bw+2)+'" y="'+(H-Math.max(0,v)/mg*H*.8)+'" width="'+Math.max(2,bw-4)+'" height="'+(Math.max(0,v)/mg*H*.8)+'" fill="#F9B5C3" stroke="#E5A0C8"><title>'+esc(fol[i].date)+": +"+v+'</title></rect>').join("")+'<polyline fill="none" stroke="#391C35" stroke-width="2" points="'+fol.map((x,i)=>(i*bw+bw/2)+","+(H-4-(hi>lo?(x.total-lo)/(hi-lo):.5)*(H-10))).join(" ")+'"/><text x="0" y="'+(H+12)+'" font-size="9">'+esc(fol[0].date)+'</text><text x="'+W+'" y="'+(H+12)+'" font-size="9" text-anchor="end">'+esc(fol.at(-1).date)+'</text></svg><p class="sm" style="margin:6px 0 0">Bars: followers gained each day. Line: total followers ('+(+fol.at(-1).total).toLocaleString()+').</p>'}
- else{const acc=(DATA&&Array.isArray(DATA.accounts)?DATA.accounts:[]);$("#chart").innerHTML=acc.length?'<table style="width:100%;border-collapse:collapse;font-size:13.5px">'+acc.map(a=>'<tr><td style="padding:5px 6px;border-top:1px solid rgba(57,28,53,.15)">'+esc(a.name)+'</td><td style="padding:5px 6px;border-top:1px solid rgba(57,28,53,.15)">'+esc(a.platform)+'</td><td style="padding:5px 6px;border-top:1px solid rgba(57,28,53,.15);text-align:right;font-family:var(--ui-font-display);font-size:18px">'+(isFinite(a.followers)&&a.followers!==null?(+a.followers).toLocaleString():"-")+'</td></tr>').join("")+'</table>':'<p class="muted" style="margin:0">Waiting for the first numbers from Refluencer.</p>'}}
+ else{const acc=(DATA?.accounts||[]).filter(a=>!scope()||a.name===scope());$("#chart").innerHTML=acc.length?'<table style="width:100%;border-collapse:collapse;font-size:13.5px">'+acc.map(a=>'<tr><td style="padding:5px 6px;border-top:1px solid rgba(57,28,53,.15)">'+esc(a.name)+'</td><td style="padding:5px 6px;border-top:1px solid rgba(57,28,53,.15)">'+esc(a.platform)+'</td><td style="padding:5px 6px;border-top:1px solid rgba(57,28,53,.15);text-align:right;font-family:var(--ui-font-display);font-size:18px">'+(isFinite(a.followers)&&a.followers!==null?(+a.followers).toLocaleString():"-")+'</td></tr>').join("")+'</table>':'<p class="muted" style="margin:0">Waiting for the first numbers from Refluencer.</p>'}}
 // ============================================================ feedback
 ["f0","f1","f3","f4","f5","f6","fname"].forEach(id=>{const t=$("#"+id);if(fb[id]!=null)t.value=fb[id];t.oninput=()=>{fb[id]=t.value;save()}});
 ["Paper theatre","Storybook ink page","Full motion","Neon painted cel","Stage and screen"].forEach(s=>{const b=el("button","chipb",s);b.type="button";b.setAttribute("aria-pressed",fb.pick.includes(s));b.onclick=()=>{fb.pick=fb.pick.includes(s)?fb.pick.filter(x=>x!==s):[...fb.pick,s];b.setAttribute("aria-pressed",fb.pick.includes(s));save()};$("#fpick").appendChild(b)});
@@ -549,7 +573,7 @@ function reviewVideos(now=new Date()){
  const [start,end]=reviewWindow(now), byId=new Map();
  if(!DATA?.updated || Date.now()-Date.parse(DATA.updated)>45*60000)return [];
  for(const p of (DATA.posts||[])){
-   if(p.status!=="scheduled"||!p.videoId||p.date<start||p.date>end)continue;
+   if(!inScope(p)||p.status!=="scheduled"||!p.videoId||p.date<start||p.date>end)continue;
    if(!byId.has(p.videoId)||byId.get(p.videoId).date>p.date)byId.set(p.videoId,p);
  }
  return [...byId.values()].sort((a,b)=>a.date.localeCompare(b.date));
