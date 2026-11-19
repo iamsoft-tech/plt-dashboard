@@ -1,27 +1,31 @@
 {
-  "updated": "2026-11-19T13:51+08:00",
+  "updated": "2026-11-19T13:56+08:00",
   "total": 10439,
   "growth": null,
   "accounts": [
     {
       "name": "alex.mei1212",
       "platform": "tiktok",
-      "followers": 0
+      "followers": 0,
+      "growth": null
     },
     {
       "name": "ooc.ceo",
       "platform": "tiktok",
-      "followers": 10436
+      "followers": 10436,
+      "growth": null
     },
     {
       "name": "alex.mei.iamsoft",
       "platform": "instagram",
-      "followers": 0
+      "followers": 0,
+      "growth": null
     },
     {
       "name": "myoutofcoloursceo",
       "platform": "instagram",
-      "followers": 3
+      "followers": 3,
+      "growth": null
     }
   ],
   "posts": [
@@ -32,7 +36,10 @@
       "platform": "instagram, tiktok",
       "status": "scheduled",
       "date": "2026-11-20",
+      "time": "12:00",
       "views": null,
+      "comments": null,
+      "urls": [],
       "url": ""
     },
     {
@@ -42,7 +49,10 @@
       "platform": "instagram, tiktok",
       "status": "scheduled",
       "date": "2026-11-19",
+      "time": "18:00",
       "views": null,
+      "comments": null,
+      "urls": [],
       "url": ""
     },
     {
@@ -52,7 +62,10 @@
       "platform": "instagram, tiktok",
       "status": "scheduled",
       "date": "2026-11-19",
+      "time": "19:00",
       "views": null,
+      "comments": null,
+      "urls": [],
       "url": ""
     },
     {
@@ -62,7 +75,15 @@
       "platform": "instagram, tiktok",
       "status": "posted",
       "date": "2026-11-17",
+      "time": "12:00",
       "views": null,
+      "comments": null,
+      "urls": [
+        "https://www.instagram.com/reel/Df1BjyNQrze/",
+        "https://www.tiktok.com/@alex.mei1212/video/7708985557719797010",
+        "https://www.instagram.com/reel/Df1BjutjDB_/",
+        "https://www.tiktok.com/@ooc.ceo/video/7708985583825177908"
+      ],
       "url": "https://www.instagram.com/reel/Df1BjyNQrze/"
     },
     {
@@ -72,7 +93,12 @@
       "platform": "instagram, tiktok",
       "status": "posted",
       "date": "2026-11-13",
+      "time": "15:00",
       "views": 348,
+      "comments": 0,
+      "urls": [
+        "https://www.tiktok.com/@ooc.ceo/video/7707547731115511047"
+      ],
       "url": "https://www.tiktok.com/@ooc.ceo/video/7707547731115511047"
     },
     {
@@ -82,7 +108,12 @@
       "platform": "instagram, tiktok",
       "status": "posted",
       "date": "2026-11-13",
+      "time": "16:00",
       "views": 130,
+      "comments": 0,
+      "urls": [
+        "https://www.tiktok.com/@ooc.ceo/video/7707563315819547910"
+      ],
       "url": "https://www.tiktok.com/@ooc.ceo/video/7707563315819547910"
     },
     {
@@ -92,7 +123,12 @@
       "platform": "instagram, tiktok",
       "status": "posted",
       "date": "2026-11-10",
+      "time": "23:59",
       "views": 69,
+      "comments": 0,
+      "urls": [
+        "https://www.tiktok.com/@ooc.ceo/video/7706573087172742408"
+      ],
       "url": "https://www.tiktok.com/@ooc.ceo/video/7706573087172742408"
     },
     {
@@ -102,7 +138,12 @@
       "platform": "tiktok",
       "status": "posted",
       "date": "2026-11-08",
+      "time": "00:01",
       "views": 3908,
+      "comments": 1,
+      "urls": [
+        "https://www.tiktok.com/@ooc.ceo/video/7705460389953178898?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
+      ],
       "url": "https://www.tiktok.com/@ooc.ceo/video/7705460389953178898?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
@@ -112,7 +153,12 @@
       "platform": "tiktok",
       "status": "posted",
       "date": "2026-11-08",
+      "time": "23:02",
       "views": 174,
+      "comments": 0,
+      "urls": [
+        "https://www.tiktok.com/@alex.mei1212/video/7705816133424680212?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
+      ],
       "url": "https://www.tiktok.com/@alex.mei1212/video/7705816133424680212?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
@@ -122,7 +168,12 @@
       "platform": "tiktok",
       "status": "posted",
       "date": "2026-11-07",
+      "time": "00:02",
       "views": 4453,
+      "comments": 1,
+      "urls": [
+        "https://www.tiktok.com/@ooc.ceo/video/7705089619150277909?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
+      ],
       "url": "https://www.tiktok.com/@ooc.ceo/video/7705089619150277909?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
@@ -132,7 +183,12 @@
       "platform": "tiktok",
       "status": "posted",
       "date": "2026-11-07",
+      "time": "23:02",
       "views": 164,
+      "comments": 0,
+      "urls": [
+        "https://www.tiktok.com/@alex.mei1212/video/7705445079342763270?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
+      ],
       "url": "https://www.tiktok.com/@alex.mei1212/video/7705445079342763270?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
@@ -142,7 +198,12 @@
       "platform": "tiktok",
       "status": "posted",
       "date": "2026-11-06",
+      "time": "07:03",
       "views": 12731,
+      "comments": 0,
+      "urls": [
+        "https://www.tiktok.com/@ooc.ceo/video/7704826764496735496?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
+      ],
       "url": "https://www.tiktok.com/@ooc.ceo/video/7704826764496735496?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
@@ -152,7 +213,12 @@
       "platform": "tiktok",
       "status": "posted",
       "date": "2026-11-06",
+      "time": "23:05",
       "views": 129,
+      "comments": 0,
+      "urls": [
+        "https://www.tiktok.com/@alex.mei1212/video/7705074709578435858?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
+      ],
       "url": "https://www.tiktok.com/@alex.mei1212/video/7705074709578435858?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
@@ -162,7 +228,12 @@
       "platform": "tiktok",
       "status": "posted",
       "date": "2026-11-05",
+      "time": "21:33",
       "views": 3672,
+      "comments": 0,
+      "urls": [
+        "https://www.tiktok.com/@ooc.ceo/video/7704680262113824052?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
+      ],
       "url": "https://www.tiktok.com/@ooc.ceo/video/7704680262113824052?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
@@ -172,7 +243,12 @@
       "platform": "tiktok",
       "status": "posted",
       "date": "2026-11-05",
+      "time": "23:04",
       "views": 82,
+      "comments": 0,
+      "urls": [
+        "https://www.tiktok.com/@alex.mei1212/video/7704703327325539585?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
+      ],
       "url": "https://www.tiktok.com/@alex.mei1212/video/7704703327325539585?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
@@ -182,7 +258,12 @@
       "platform": "tiktok",
       "status": "posted",
       "date": "2026-11-04",
+      "time": "07:04",
       "views": 13449,
+      "comments": 2,
+      "urls": [
+        "https://www.tiktok.com/@ooc.ceo/video/7704084850864704820?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
+      ],
       "url": "https://www.tiktok.com/@ooc.ceo/video/7704084850864704820?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     },
     {
@@ -192,10 +273,23 @@
       "platform": "tiktok",
       "status": "posted",
       "date": "2026-11-02",
+      "time": "07:01",
       "views": 10315,
+      "comments": 1,
+      "urls": [
+        "https://www.tiktok.com/@ooc.ceo/video/7703341950400761096?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
+      ],
       "url": "https://www.tiktok.com/@ooc.ceo/video/7703341950400761096?utm_campaign=tt4d_open_api&utm_source=7608030276714774544"
     }
   ],
+  "accountHistory": {
+    "2026-11-19": {
+      "alex.mei1212": 0,
+      "ooc.ceo": 10436,
+      "alex.mei.iamsoft": 0,
+      "myoutofcoloursceo": 3
+    }
+  },
   "history": {
     "2026-11-19": 10439
   },
