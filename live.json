@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T23:01+08:00",
+  "updated": "2026-11-20T23:06+08:00",
   "total": 10439,
   "growth": 0,
   "accounts": [
@@ -171,7 +171,34 @@
     },
     {
       "previewReady": true,
-      "releases": [],
+      "releases": [
+        {
+          "handle": "alex.mei.iamsoft",
+          "url": "https://www.instagram.com/reel/Df97wLshvCV/",
+          "views": null,
+          "viewsAsOf": null,
+          "likes": null,
+          "comments": null,
+          "saves": null,
+          "newFollowers": null,
+          "watch": null,
+          "completion": null,
+          "retention": null
+        },
+        {
+          "handle": "alex.mei1212",
+          "url": "https://www.tiktok.com/@alex.mei1212/video/7710269493968145716",
+          "views": null,
+          "viewsAsOf": null,
+          "likes": null,
+          "comments": null,
+          "saves": null,
+          "newFollowers": null,
+          "watch": null,
+          "completion": null,
+          "retention": null
+        }
+      ],
       "videoId": "6ca9ab0f-0d46-4587-baac-99ca1edfc383",
       "title": "Four sentences - Beat 1 - Seedance 2.5 - Alex Mei English",
       "account": "@alex.mei.iamsoft, @alex.mei1212",
@@ -181,8 +208,11 @@
       "time": "23:00",
       "views": null,
       "comments": null,
-      "urls": [],
-      "url": ""
+      "urls": [
+        "https://www.instagram.com/reel/Df97wLshvCV/",
+        "https://www.tiktok.com/@alex.mei1212/video/7710269493968145716"
+      ],
+      "url": "https://www.instagram.com/reel/Df97wLshvCV/"
     },
     {
       "previewReady": true,
