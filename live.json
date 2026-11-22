@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22T23:11+08:00",
+  "updated": "2026-11-23T00:01+08:00",
   "total": 10439,
   "growth": 0,
   "accounts": [
@@ -823,13 +823,20 @@
       "ooc.ceo": 10436,
       "alex.mei.iamsoft": 0,
       "myoutofcoloursceo": 3
+    },
+    "2026-11-23": {
+      "alex.mei1212": 0,
+      "ooc.ceo": 10436,
+      "alex.mei.iamsoft": 0,
+      "myoutofcoloursceo": 3
     }
   },
   "history": {
     "2026-11-19": 10439,
     "2026-11-20": 10439,
     "2026-11-21": 10439,
-    "2026-11-22": 10439
+    "2026-11-22": 10439,
+    "2026-11-23": 10439
   },
   "growthLabel": "New followers (net since yesterday)"
 }
